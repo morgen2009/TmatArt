@@ -45,6 +45,51 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Geometry\Euler.cs" />
+    <Compile Include="Geometry\Symmetry.cs" />
+    <Compile Include="Geometry\Vector.cs" />
+    <Compile Include="Geometry\VectorC.cs" />
+    <Compile Include="Geometry\VectorR.cs" />
+    <Compile Include="Numeric\Complex.cs" />
+    <Compile Include="Numeric\Double.cs" />
+    <Compile Include="Numeric\Math.cs" />
+    <Compile Include="Numeric\MathCmplx.cs" />
+    <Compile Include="Numeric\Function\Gamma.cs" />
+    <Compile Include="Numeric\Function\SphBessel.cs" />
+    <Compile Include="Numeric\Integration\Mesh.cs" />
+    <Compile Include="Numeric\Integration\MeshGauss.cs" />
+    <Compile Include="Numeric\Integration\MeshRect.cs" />
+    <Compile Include="Numeric\Polynomial\Abstract.cs" />
+    <Compile Include="Numeric\Polynomial\Arbitrary.cs" />
+    <Compile Include="Numeric\Polynomial\Laguerre.cs" />
+    <Compile Include="Numeric\Polynomial\Legendre.cs" />
+    <Compile Include="Scattering\Field.cs" />
+    <Compile Include="Scattering\Basis\Angular.cs" />
+    <Compile Include="Scattering\Basis\IncSVWF.cs" />
+    <Compile Include="Scattering\Basis\OutSVWF.cs" />
+    <Compile Include="Scattering\Basis\SVWF.cs" />
+    <Compile Include="Scattering\Indexing\Block.cs" />
+    <Compile Include="Scattering\Indexing\Index.cs" />
+    <Compile Include="Scattering\Indexing\Mapper.cs" />
+    <Compile Include="Scattering\Indexing\Offset.cs" />
+    <Compile Include="Scattering\Indexing\Mappers\General.cs" />
+    <Compile Include="Scattering\Indexing\Mappers\GeneralDoicu.cs" />
+    <Compile Include="Scattering\Indexing\Mappers\Sphere.cs" />
+    <Compile Include="Scattering\Medium\Base.cs" />
+    <Compile Include="Scattering\Medium\Isotrop.cs" />
+    <Compile Include="Tests\Complex.cs" />
+    <Compile Include="Tests\Double.cs" />
+    <Compile Include="Tests\Function.cs" />
+    <Compile Include="Tests\Integration.cs" />
+    <Compile Include="Tests\Polynomial.cs" />
+    <Compile Include="Tests\Scattering\Basis.cs" />
+    <Compile Include="Tests\Scattering\Index.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Geometry\" />
+    <Folder Include="Numeric\" />
+    <Folder Include="Scattering\" />
+    <Folder Include="Tests\" />
+  </ItemGroup>
 </Project>
