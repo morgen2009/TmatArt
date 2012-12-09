@@ -51,7 +51,7 @@ namespace TmatArt.Numeric.Mathematics
 			}
 		}
 
-		/* IEqualityComparer */
+		/* implementation of IEqualityComparer */
 		public bool Equals (Complex x, Complex y)
 		{
 			return x.re.Equals(y.re) && x.im.Equals(y.im);
@@ -62,7 +62,7 @@ namespace TmatArt.Numeric.Mathematics
 			return obj.re.GetHashCode() + obj.im.GetHashCode();
 		}
 
-		/* IGroupOperations */
+		/* implementation of IGroupOperations */
 		public Complex Add(Complex a)
 		{
 			return new Complex(this.re + a.re, this.im + a.im);
@@ -83,7 +83,7 @@ namespace TmatArt.Numeric.Mathematics
 			return Complex.ZERO;
 		}
 
-		/* IRingOperations */
+		/* implementation of IRingOperations */
 		public Complex Multiply(Complex a)
 		{
 			return new Complex(this.re * a.re - this.im * a.im, this.re * a.im + this.im * a.re);
@@ -106,7 +106,7 @@ namespace TmatArt.Numeric.Mathematics
 			return Complex.ONE;
 		}
 
-		/* IVectorOperations */
+		/* implementation of IVectorSpace */
 		public Complex Multiply (double a)
 		{
 			return new Complex(this.re * a, this.im * a);

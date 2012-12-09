@@ -23,7 +23,7 @@ namespace TmatArt.Numeric.Mathematics
 	/// 		* scalar { for all a, b in P and c in L => (a+b)*c = (a*c)+(b*c) }
 	/// 		* vector { for all a in L and b, c in P => a*(b+c) = (a*b)+(a*c) }
 	/// </description>		
-	public interface IVectorOperations<T, TScalar> : IGroupOperations<T>
+	public interface IVectorSpace<T, TScalar> : IGroupOperations<T>
 	{
 		T Multiply(TScalar a);
 		T Divide(TScalar a);
