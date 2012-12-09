@@ -167,11 +167,11 @@ namespace TmatArt.Numeric.Polynomial
 				x1 = x;
 				x  = a - (b-a) / (fb-fa) * fa;
 				fx = this.compute(x, n).Where(v => v.n == n).First().p;
-				if (Math.Sign(fx)*Math.Sign(fb) < 0) { a = x; fa = fx; }
+				if (System.Math.Sign(fx)*System.Math.Sign(fb) < 0) { a = x; fa = fx; }
 				else
-				if (Math.Sign(fx)*Math.Sign(fa) < 0) { b = x; fb = fx; }
+				if (System.Math.Sign(fx)*System.Math.Sign(fa) < 0) { b = x; fb = fx; }
 				else x1 = x;
-			} while (Math.Abs(x-x1) >= Abstract.epsRoot);
+			} while (System.Math.Abs(x-x1) >= Abstract.epsRoot);
 			
 			return x;
 		}

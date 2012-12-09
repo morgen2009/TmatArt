@@ -11,7 +11,7 @@ namespace TmatArt.Scattering.Basis
 	/**
 	 * Spherical Vector Wave Functions
 	 */
-	public class SVWF
+/*	public class SVWF
 	{
 		public IEnumerable<KeyValuePair<Index, VectorC>> f (int nrank, int mrank, double r, double theta, double phi, Medium.Isotrop medium)
 		{
@@ -45,7 +45,7 @@ namespace TmatArt.Scattering.Basis
 			res.x = m * Complex.aim() * val.pi;
 			res.y = - val.tau;
 			res.z = 0;
-			return res;*/
+			return res;*
 			return null;
 		}
 		

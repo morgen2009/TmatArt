@@ -84,6 +84,16 @@
     <Compile Include="Tests\Polynomial.cs" />
     <Compile Include="Tests\Scattering\Basis.cs" />
     <Compile Include="Tests\Scattering\Index.cs" />
+    <Compile Include="Geometry\VectorNew.cs" />
+    <Compile Include="Numeric\Mathematics\IGroupOperations.cs" />
+    <Compile Include="Numeric\Mathematics\IRingOperations.cs" />
+    <Compile Include="Numeric\Mathematics\IAlgebraOperations.cs" />
+    <Compile Include="Numeric\Mathematics\Complex.cs" />
+    <Compile Include="Numeric\Mathematics\IMath.cs" />
+    <Compile Include="Numeric\Mathematics\MathC.cs" />
+    <Compile Include="Numeric\Mathematics\IVectorOperations.cs" />
+    <Compile Include="Tests\Numeric\Complex.cs" />
+    <Compile Include="Tests\Numeric\ComplexFixtures.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -91,5 +101,7 @@
     <Folder Include="Numeric\" />
     <Folder Include="Scattering\" />
     <Folder Include="Tests\" />
+    <Folder Include="Numeric\Mathematics\" />
+    <Folder Include="Tests\Numeric\" />
   </ItemGroup>
 </Project>

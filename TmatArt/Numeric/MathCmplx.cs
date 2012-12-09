@@ -2,6 +2,7 @@ using System;
 
 namespace TmatArt.Numeric
 {
+	/// <remarks>DEPRECATED</remarks>		
 	public static class MathCmplx
 	{
 		/* Trigonometric function: SIN */
@@ -47,22 +48,22 @@ namespace TmatArt.Numeric
 			// get normalized presentation of complex number
 			double norm = arg.abs();
 			double phi  = 0;
-			if (Math.Abs(norm) > double.Epsilon) phi = Math.Asin(arg.im / norm);
+			if (System.Math.Abs(norm) > double.Epsilon) phi = System.Math.Asin(arg.im / norm);
 			
 			// apply operation and return result
-			return Complex.c(Math.Log(norm), phi);
+			return Complex.c(System.Math.Log(norm), phi);
 		}
 		
 		/* Exponent */
 		public static Complex Exp(Complex arg)
 		{
-			return Complex.n(Math.Exp(arg.re), arg.im);
+			return Complex.c(System.Math.Exp(arg.re), arg.im);
 		}
 
 		/* Absolute value */
 		public static double Abs(Complex arg)
 		{
-			return Math.Sqrt(arg.re * arg.re + arg.im * arg.im);
+			return System.Math.Sqrt(arg.re * arg.re + arg.im * arg.im);
 		}
 
 		/* Sqrt */
@@ -71,10 +72,10 @@ namespace TmatArt.Numeric
 			// get normalized presentation of complex number
 			double norm = arg.abs();
 			double phi  = 0;
-			if (Math.Abs(norm) > double.Epsilon) phi = Math.Asin(arg.im / norm);
+			if (System.Math.Abs(norm) > double.Epsilon) phi = System.Math.Asin(arg.im / norm);
 			
 			// apply operation and return result
-			return Complex.n(Math.Sqrt(norm), phi / 2);
+			return Complex.c(System.Math.Sqrt(norm), phi / 2);
 		}
 		
 		/* Pow */
@@ -83,10 +84,10 @@ namespace TmatArt.Numeric
 			// get normalized presentation of complex number
 			double norm = arg.abs();
 			double phi  = 0;
-			if (Math.Abs(norm) > double.Epsilon) phi = Math.Asin(arg.im / norm);
+			if (System.Math.Abs(norm) > double.Epsilon) phi = System.Math.Asin(arg.im / norm);
 			
 			// apply operation and return result
-			return Complex.n(Math.Pow(norm, degree), phi * degree);
+			return Complex.c(System.Math.Pow(norm, degree), phi * degree);
 		}
 		public static Complex Pow(Complex arg, Complex degree)
 		{

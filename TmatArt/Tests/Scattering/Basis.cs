@@ -18,7 +18,7 @@ namespace TmatArt.Test
 			Legendre pol = new Legendre(mrank);				
 			foreach (Angular.Value<double> val in Angular.compute(theta, nrank, mrank))
 			{
-				Legendre.Value val1 = pol.computeOne(Math.Cos(theta), val.n);
+				Legendre.Value val1 = pol.computeOne(System.Math.Cos(theta), val.n);
 				val1.p *= 1.0 / pol.norm(val.n) * (-1.0).Pow(mrank);
 				Console.WriteLine(String.Format("{0} {1} {2}", val.n, val.p, val1.p));
 				Assert.AreEqual(val1.p, val.p, 1E-10);
@@ -34,8 +34,8 @@ namespace TmatArt.Test
 			Legendre pol = new Legendre(mrank);				
 			foreach (Angular.Value<double> val in Angular.compute(theta, nrank, mrank))
 			{
-				Legendre.Value val1 = pol.computeOne(Math.Cos(theta), val.n);
-				val1.dp *= -1.0 / pol.norm(val.n) * (-1.0).Pow(mrank) * Math.Sin(theta);
+				Legendre.Value val1 = pol.computeOne(System.Math.Cos(theta), val.n);
+				val1.dp *= -1.0 / pol.norm(val.n) * (-1.0).Pow(mrank) * System.Math.Sin(theta);
 				Console.WriteLine(String.Format("{0} {1} {2}", val.n, val.tau, val1.dp));
 				Assert.AreEqual(val1.dp, val.tau, 1E-10);
 			}

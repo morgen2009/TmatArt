@@ -20,15 +20,15 @@ namespace TmatArt.Scattering.Basis
 			if (m < 0)
 				throw new ArgumentOutOfRangeException("Wrong: m < 0");
 			
-			double cos = Math.Cos(theta);
-			double sin = Math.Sin(theta);
+			double cos = System.Math.Cos(theta);
+			double sin = System.Math.Sin(theta);
 			if (m == 0)
 			{
 				/**
 				 * pi_n^0  = 0
 				 * tau_n^0 = -sin(theta) * P'_n(cos(theta))
 				 */
-				double p1 = Math.Sqrt(2)/2, p2 = 0;
+				double p1 = System.Math.Sqrt(2)/2, p2 = 0;
 				
 				// n = 0
 				Value<double> val = new Value<double> {
@@ -46,7 +46,7 @@ namespace TmatArt.Scattering.Basis
 				{
 					j3 = j2;
 					j2 = j1;
-					j1 = Math.Sqrt(2*j+1);
+					j1 = System.Math.Sqrt(2*j+1);
 					
 					double pp = j1 / j * (j2 * cos * p1 - (j-1) / j3 * p2);
 					val.n   = j;
@@ -71,7 +71,7 @@ namespace TmatArt.Scattering.Basis
 				
 				p1 = (2*m+1) / 2.0;
 				for (int j=1; j<=m; j++) p1 *= (1 - 0.5/j);
-				p1 = Math.Sqrt(p1) * sin.Pow(m - 1);
+				p1 = System.Math.Sqrt(p1) * sin.Pow(m - 1);
 				
 				Value<double> val = new Value<double> {
 					n   = m,
@@ -83,16 +83,16 @@ namespace TmatArt.Scattering.Basis
 				if (n == 0) yield break;
 
 				// n > m
-				double j3 = 0, j2 = 1, j1 = Math.Sqrt(2*m+1);
+				double j3 = 0, j2 = 1, j1 = System.Math.Sqrt(2*m+1);
 				double i2 = 0, i1 = 0;
 				for (int j = m+1; j <= n; j++)
 				{
 					j3 = j2; // <- \sqrt(2n-3)
 					j2 = j1; // <- \sqrt(2n-1)
-					j1 = Math.Sqrt(2*j+1); // <- \sqrt(2n+1)
+					j1 = System.Math.Sqrt(2*j+1); // <- \sqrt(2n+1)
 					
 					i2 = i1; // <- \sqrt((n-1-m)(n-1+m))
-					i1 = Math.Sqrt((j-m)*(j+m)); // <- \sqrt((n-m)(n+m))
+					i1 = System.Math.Sqrt((j-m)*(j+m)); // <- \sqrt((n-m)(n+m))
 					//Console.WriteLine(String.Format("{0} {1} {2}", j, j1.Pow(2), i1.Pow(2)));
 					double pp = j1 / i1 * (j2 * cos * p1 - i2 / j3 * p2);
 					val.n   = j;

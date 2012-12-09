@@ -67,7 +67,8 @@ namespace TmatArt.Geometry
 		/* convert */
 	    public static explicit operator VectorC(Vector a)
 	    {
-	        return new VectorC(a.x, a.y, a.z);
+			return null;
+	        //return new VectorC(a.x, a.y, a.z);
 	    }
 	}
 }

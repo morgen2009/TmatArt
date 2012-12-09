@@ -2,6 +2,7 @@ using System;
 
 namespace TmatArt.Numeric
 {
+	/// <remarks>DEPRECATED</remarks>		
 	/**
 	 *  Complex number
 	 */
@@ -9,7 +10,12 @@ namespace TmatArt.Numeric
 	{
 		const double threshold = 1E-14;
 		public double re, im;
-		
+
+		public Complex Add(Complex a)
+		{
+			return new Complex(this.re + a.re, this.im + a.im);
+		}
+
 	    /* Constructor */
 		public Complex (double re = 0, double im = 0)
 		{

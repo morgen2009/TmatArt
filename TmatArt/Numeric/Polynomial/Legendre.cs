@@ -67,13 +67,13 @@ namespace TmatArt.Numeric.Polynomial
 		 */
 		public override System.Collections.Generic.IEnumerable<Value> compute (double x, int n)
 		{
-			if (Math.Abs(x) > 1)
+			if (System.Math.Abs(x) > 1)
 				throw new ArgumentOutOfRangeException("Argument of Legendre polynom must be in the range [-1, 1]");
 			if (n < 0)
 				throw new ArgumentOutOfRangeException("Degree of Legendre polynom must be positive");
 			
 			int m  = this.m;
-			int ml = Math.Abs(m);
+			int ml = System.Math.Abs(m);
 			if (ml > n) yield break;
 			double fact = 1;
 			if (m < 0)
@@ -86,7 +86,7 @@ namespace TmatArt.Numeric.Polynomial
 			double p1 = fact, p2 = 0E0;
 			if (ml>0)
 			{
-				double y = Math.Sqrt(1-x*x);
+				double y = System.Math.Sqrt(1-x*x);
 				for (int j=0; j<ml; j++) p1 *= -(2*j+1) * y;
 			}
 			
@@ -105,8 +105,8 @@ namespace TmatArt.Numeric.Polynomial
 				p1 = ((2*j-1) * x * p2 - (j-1+m) * p3) / (double)(j-m);
 				val.n  = j;
 				val.p = p1;
-				if (Math.Abs(x) >= 1-Double.Epsilon && m == 0)
-					val.dp = (n % 2 == 0 ? Math.Sign(x) : 1)*n*(n+1)/2;
+				if (System.Math.Abs(x) >= 1-Double.Epsilon && m == 0)
+					val.dp = (n % 2 == 0 ? System.Math.Sign(x) : 1)*n*(n+1)/2;
 				else
 					val.dp = (n * x * p1 - (n+m) * p2) / (x * x - 1E0);
 				yield return val;
@@ -126,7 +126,7 @@ namespace TmatArt.Numeric.Polynomial
 				for (int i=n-m+1; i<=n+m; i++)
 					res = res * i;
 			}
-			return Math.Sqrt(res);
+			return System.Math.Sqrt(res);
 		}
 		
 		/**
@@ -151,7 +151,7 @@ namespace TmatArt.Numeric.Polynomial
 			{
   				double pp, p1;
 			    double z1 = 0E0;
-			    double z  = Math.Cos(Math.PI * (i - 0.25E0) / (n + 0.5E0)); // first approximation for i-th root
+				double z  = System.Math.Cos(System.Math.PI * (i - 0.25E0) / (n + 0.5E0)); // first approximation for i-th root
 				int  iter = Legendre.iterRoot;
 			    do
 				{
@@ -165,7 +165,7 @@ namespace TmatArt.Numeric.Polynomial
       				z  = z1 - p1 / pp; 
     				if (--iter == 0) throw new Exception("The " + i + "-th root of the n-th Legendre polynom could not be found");
 				}
-				while (Math.Abs(z - z1) > Legendre.epsRoot);
+				while (System.Math.Abs(z - z1) > Legendre.epsRoot);
 				if (i-1 != n-i) yield return -z; // x[i-1]
 				yield return z;  // x[n-i]
   			}

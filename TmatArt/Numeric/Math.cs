@@ -2,6 +2,7 @@ using System;
 
 namespace TmatArt.Numeric
 {
+	/// <remarks>DEPRECATED</remarks>		
 	public static class Math
 	{
 		/* Trigonometric function: SIN */

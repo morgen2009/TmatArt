@@ -45,7 +45,7 @@ namespace TmatArt.Numeric.Function
 		{
 			if (z < 0.5)
 				// using reflection formula
-				return Math.PI / ( Math.Sin(Math.PI * z) * compute(1-z) );
+				return System.Math.PI / ( System.Math.Sin(System.Math.PI * z) * compute(1-z) );
 			else
 				// using Lanczos approximation
 				return compute(z, 5.0, ref lanczos_coeff5);
@@ -75,7 +75,7 @@ namespace TmatArt.Numeric.Function
 			for (int i=1; i<coef.Length; i++) res += coef[i] / (z+i);
 
 			double tmp = z+g+0.5;
-			res *= Math.Pow(tmp, z+0.5) * Math.Exp(-tmp) * Math.Sqrt(2 * Math.PI) / z;
+			res *= System.Math.Pow(tmp, z+0.5) * System.Math.Exp(-tmp) * System.Math.Sqrt(2 * System.Math.PI) / z;
 			
 			return res;
 		}

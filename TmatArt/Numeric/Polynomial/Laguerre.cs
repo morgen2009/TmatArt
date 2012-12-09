@@ -129,7 +129,7 @@ namespace TmatArt.Numeric.Polynomial
       				z  = z1 - p1 / pp; 
     				if (--iter == 0) throw new Exception("The " + i + "-th root of the n-th Laguerre polynom could not be found");
 				}
-				while (Math.Abs(z - z1) > Laguerre.epsRoot);
+				while (System.Math.Abs(z - z1) > Laguerre.epsRoot);
 				x3 = x2;
 				x2 = x1;
 				x1 = z;

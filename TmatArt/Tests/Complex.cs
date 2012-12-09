@@ -4,6 +4,7 @@ using TmatArt.Numeric;
 
 namespace TmatArt.Test
 {
+	/// <remarks>DEPRECATED</remarks>		
 	[TestFixture()]
 	public class TestComplex
 	{
