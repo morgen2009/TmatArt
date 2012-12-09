@@ -1,5 +1,5 @@
 using System;
-using TmatArt.Numeric;
+using TmatArt.Numeric.Mathematics;
 using TmatArt.Geometry;
 
 namespace TmatArt.Scattering.Medium
@@ -15,7 +15,7 @@ namespace TmatArt.Scattering.Medium
 			
 		public Isotrop (Complex eps, Complex mu)
 		{
-			this.mr = MathCmplx.Sqrt(eps * mu);
+			this.mr = Complex.Math.Sqrt(eps * mu);
 		}
 	}
 }

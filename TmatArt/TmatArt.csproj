@@ -47,10 +47,7 @@
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Geometry\Euler.cs" />
     <Compile Include="Geometry\Symmetry.cs" />
-    <Compile Include="Numeric\Complex.cs" />
     <Compile Include="Numeric\Double.cs" />
-    <Compile Include="Numeric\Math.cs" />
-    <Compile Include="Numeric\MathCmplx.cs" />
     <Compile Include="Numeric\Function\Gamma.cs" />
     <Compile Include="Numeric\Function\SphBessel.cs" />
     <Compile Include="Numeric\Integration\Mesh.cs" />
@@ -74,7 +71,6 @@
     <Compile Include="Scattering\Indexing\Mappers\Sphere.cs" />
     <Compile Include="Scattering\Medium\Base.cs" />
     <Compile Include="Scattering\Medium\Isotrop.cs" />
-    <Compile Include="Tests\Complex.cs" />
     <Compile Include="Tests\Double.cs" />
     <Compile Include="Tests\Function.cs" />
     <Compile Include="Tests\Integration.cs" />
