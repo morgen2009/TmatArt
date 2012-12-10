@@ -92,6 +92,12 @@
     <Compile Include="Geometry\Vector3c.cs" />
     <Compile Include="Geometry\EulerExtension.cs" />
     <Compile Include="Tests\Geometry\Euler.cs" />
+    <Compile Include="Geometry\Coordinate.cs" />
+    <Compile Include="Scattering\Field\Field.cs" />
+    <Compile Include="Scattering\Field\PlaneWave.cs" />
+    <Compile Include="Scattering\Field\GaussBeam.cs" />
+    <Compile Include="Scattering\Field\Container.cs" />
+    <Compile Include="Scattering\Field\Aggregate.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -102,5 +108,6 @@
     <Folder Include="Numeric\Mathematics\" />
     <Folder Include="Tests\Numeric\" />
     <Folder Include="Tests\Geometry\" />
+    <Folder Include="Scattering\Field\" />
   </ItemGroup>
 </Project>
