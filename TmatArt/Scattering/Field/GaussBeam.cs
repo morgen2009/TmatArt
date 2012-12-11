@@ -4,17 +4,17 @@ using TmatArt.Numeric.Mathematics;
 
 namespace TmatArt.Scattering.Field
 {
-	public class GausBeam: Field
+/*	public class GausBeam: IField
 	{
-		public override Vector3c near(Vector3d r)
+		public Vector3c near(Vector3d r)
 		{
 			return new Vector3c(0, 0, 0);
 		}
 		
-		public override Vector3c far(double phi, double theta)
+		public Vector3c far(double phi, double theta)
 		{
 			return new Vector3c(0, 0, 0);
 		}		
-	}
+	}*/
 }
 

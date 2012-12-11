@@ -4,19 +4,29 @@ using TmatArt.Numeric.Mathematics;
 
 namespace TmatArt.Scattering.Field
 {
-	public class PlaneWave: Field
+	public class PlaneWave: IField
 	{
-		public Complex Ax, Ay;
+		public Complex Ex, Ey;
 
-		public override Vector3c near(Vector3d r)
+		public Vector3c Near(Vector3d r)
 		{
 			return new Vector3c(0, 0, 0);
 		}
 		
-		public override Vector3c far(double phi, double theta)
+		public Vector3c Far(Euler e)
 		{
 			return new Vector3c(0, 0, 0);
-		}		
+		}
+
+		public IFieldFactory factory()
+		{
+			return new PlaneWaveFactory();
+		}
+
+		public IExpansionCoefficients Expansion(Coordinate coordinate)
+		{
+			return null;
+		}
 	}
 }
 
