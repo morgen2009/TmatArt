@@ -40,27 +40,28 @@ namespace TmatArt.Geometry
 		/* implementation of IGroupOperations */
 		public Euler Add(Euler a)
 		{
-			Vector3d e2 = new Vector3d(0, 1, 0);
 			Vector3d e3 = new Vector3d(0, 0, 1);
+			Vector3d e3t = e3.Rotate(a.Negate()).Rotate(this.Negate());
 
-			Vector3d e2t = e2.Rotate(this).Rotate(a);
-			Vector3d e3t = e3.Rotate(this).Rotate(a);
+			Vector3d e2 = new Vector3d(0, 1, 0);
+			Vector3d e2t = e2.Rotate(a.Negate()).Rotate(this.Negate());
 
 			// beta
 			double beta = System.Math.Acos(e3t.z);
 
 			// alpha
-			// TODO include special case beta = 0
-			double alpha = System.Math.Acos(e3t.x);
-			if (e3t.y < 0) {
-				alpha = 2 * System.Math.PI - alpha;
+			double alpha = System.Math.Acos(e3t.x / System.Math.Sqrt(1-e3t.z*e3t.z));
+			if (double.IsNaN(alpha)) {
+				alpha = 0;
+			} else {
+				if (e3t.y < 0) {
+					alpha = 2 * System.Math.PI - alpha;
+				}
 			}
 
 			// gamma
-			// TODO optimize computation of gamma Euler angle
-			e2 = e2.RotateZ(alpha);
-			double e2tproj = e2 * e2t;
-			double gamma = System.Math.Acos(e2tproj);
+			e2 = e2.RotateZ(-alpha);
+			double gamma = System.Math.Acos(e2 * e2t);
 			if ((e2 ^ e3t) * e2t > 0) {
 				gamma = 2 * System.Math.PI - gamma;
 			}
@@ -105,7 +106,7 @@ namespace TmatArt.Geometry
 					angle += System.Math.PI * 2;
 				}
 				
-				while (angle > System.Math.PI * 2) {
+				while (angle >= System.Math.PI * 2) {
 					angle -= System.Math.PI * 2;
 				}
 

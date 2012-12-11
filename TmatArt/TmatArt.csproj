@@ -90,8 +90,10 @@
     <Compile Include="Numeric\Mathematics\IHilbertSpace.cs" />
     <Compile Include="Numeric\Mathematics\IVectorSpace.cs" />
     <Compile Include="Geometry\Vector3c.cs" />
-    <Compile Include="Geometry\EulerExtension.cs" />
-    <Compile Include="Tests\Geometry\Euler.cs" />
+    <Compile Include="Tests\Geometry\Rotation.cs" />
+    <Compile Include="Tests\Geometry\RotationFixtures.cs" />
+    <Compile Include="Geometry\Vector3dEulerExtension.cs" />
+    <Compile Include="Geometry\Vector3cEulerExtension.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

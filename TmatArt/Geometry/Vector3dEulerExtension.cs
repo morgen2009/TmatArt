@@ -2,8 +2,14 @@ using System;
 
 namespace TmatArt.Geometry
 {
-	public static class EulerExtension
+	public static class Vector3dEulerExtension
 	{
+		/// <summary>
+		/// Rotation of coordinate system around X axis by given angle
+		/// </summary>
+		/// <returns>The original vector in the rotated coordinate system</returns>
+		/// <param name="vector">Vector.</param>
+		/// <param name="angle">Angle (positive value corresponds clockwise rotation).</param>
 		public static Vector3d RotateX (this Vector3d vector, double angle)
 		{
 			double cos = System.Math.Cos(angle);
@@ -16,6 +22,12 @@ namespace TmatArt.Geometry
 			);
 		}
 		
+		/// <summary>
+		/// Rotation of coordinate system around Y axis by given angle
+		/// </summary>
+		/// <returns>The original vector in the rotated coordinate system</returns>
+		/// <param name="vector">Vector.</param>
+		/// <param name="angle">Angle (positive value corresponds clockwise rotation).</param>
 		public static Vector3d RotateY (this Vector3d vector, double angle)
 		{
 			double cos = System.Math.Cos(angle);
@@ -28,6 +40,12 @@ namespace TmatArt.Geometry
 			);
 		}
 		
+		/// <summary>
+		/// Rotation of coordinate system around Z axis by given angle
+		/// </summary>
+		/// <returns>The original vector in the rotated coordinate system</returns>
+		/// <param name="vector">Vector.</param>
+		/// <param name="angle">Angle (positive value corresponds clockwise rotation).</param>
 		public static Vector3d RotateZ (this Vector3d vector, double angle)
 		{
 			double cos = System.Math.Cos(angle);
@@ -40,9 +58,14 @@ namespace TmatArt.Geometry
 			);
 		}
 		
+		/// <summary>
+		/// Rotation of coordinate system by Euler angles
+		/// </summary>
+		/// <returns>The original vector in the rotated coordinate system</returns>
+		/// <param name="vector">Vector.</param>
+		/// <param name="euler">Euler angles.</param>
 		public static Vector3d Rotate (this Vector3d vector, Euler euler)
 		{
-			// TODO check rotation of Vector3d by Euler angles
 			Vector3d r = vector;
 
 			// rotate vector around Z axis by angle &alpha;
@@ -60,13 +83,7 @@ namespace TmatArt.Geometry
 				r = r.RotateZ(euler.gamma);
 			}
 			
-			return vector;
-		}
-
-		public static Vector3c Rotate (this Vector3c vector, Euler euler)
-		{
-			// TODO implement rotation of Vector3c by Euler angles
-			return vector;
+			return r;
 		}
 	}
 }
