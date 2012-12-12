@@ -6,16 +6,16 @@ namespace TmatArt.Scattering.Medium
 {
 	public class Isotrop
 	{
-		public readonly Complex mr;
+		public readonly Complex index;
 		
-		public Isotrop (Complex mr)
+		public Isotrop (Complex index)
 		{
-			this.mr = mr;
+			this.index = index;
 		}
 			
 		public Isotrop (Complex eps, Complex mu)
 		{
-			this.mr = Complex.Math.Sqrt(eps * mu);
+			this.index = Complex.Math.Sqrt(eps * mu);
 		}
 	}
 }
