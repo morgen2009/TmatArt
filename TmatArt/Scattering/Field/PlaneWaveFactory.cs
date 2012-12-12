@@ -8,12 +8,12 @@ namespace TmatArt.Scattering.Field
 	{
 		public IField Reflect(Halfspace region)
 		{
-			return new PlaneWave();
+			return null;
 		}
 
 		public IField Transmit(Halfspace region)
 		{
-			return new PlaneWave();
+			return null;
 		}
 	}
 }

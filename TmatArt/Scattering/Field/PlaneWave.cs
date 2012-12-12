@@ -4,9 +4,9 @@ using TmatArt.Numeric.Mathematics;
 
 namespace TmatArt.Scattering.Field
 {
-	public class PlaneWave: IField
+	public class PlaneWave //: IField
 	{
-		public Complex Ex, Ey;
+		/*		public Complex Ex, Ey;
 
 		public Vector3c Near(Vector3d r)
 		{
@@ -26,7 +26,7 @@ namespace TmatArt.Scattering.Field
 		public IExpansionCoefficients Expansion(Coordinate coordinate)
 		{
 			return null;
-		}
+		}*/
 	}
 }
 

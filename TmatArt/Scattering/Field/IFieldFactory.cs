@@ -13,13 +13,13 @@ namespace TmatArt.Scattering.Field
 		/// Reflection of the field on the specified boundary of the region
 		/// </summary>
 		/// <param name="region">Region.</param>
-		IField Reflect(Halfspace region, IMedium mediumExt);
+		//IField Reflect(Halfspace region, IMedium mediumExt);
 
 		/// <summary>
 		/// Transmission of the field on the specified boundary of the region
 		/// </summary>
 		/// <param name="region">Region.</param>
-		IField Transmit(Halfspace region, IMedium mediumExt);
+		//IField Transmit(Halfspace region, IMedium mediumExt);
 	}
 }
 
