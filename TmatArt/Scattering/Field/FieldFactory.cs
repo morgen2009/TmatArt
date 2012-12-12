@@ -1,25 +1,25 @@
 using System;
-using TmatArt.Geometry.Region;
 using TmatArt.Scattering.Medium;
+using TmatArt.Geometry.Region;
 
 namespace TmatArt.Scattering.Field
 {
 	/// <summary>
-	/// Interface for the field factory object
+	/// The factory for the field object
 	/// </summary>
-	public interface IFieldFactory
+	public abstract class FieldFactory
 	{
 		/// <summary>
 		/// Reflection of the field on the specified boundary of the region
 		/// </summary>
 		/// <param name="region">Region.</param>
-		//IField Reflect(Halfspace region, IMedium mediumExt);
-
+		public abstract Field Reflect(Halfspace region, Medium.Isotrop mediumExt);
+		
 		/// <summary>
 		/// Transmission of the field on the specified boundary of the region
 		/// </summary>
 		/// <param name="region">Region.</param>
-		//IField Transmit(Halfspace region, IMedium mediumExt);
+		public abstract Field Transmit(Halfspace region, Medium.Isotrop mediumExt);
 	}
 }
 

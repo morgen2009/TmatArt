@@ -99,15 +99,14 @@
     <Compile Include="Scattering\Field\GaussBeam.cs" />
     <Compile Include="Scattering\Field\Container.cs" />
     <Compile Include="Scattering\Field\Aggregate.cs" />
-    <Compile Include="Scattering\Field\IContainer.cs" />
-    <Compile Include="Scattering\Field\IFieldFactory.cs" />
-    <Compile Include="Scattering\Field\IField.cs" />
     <Compile Include="Scattering\Field\IExpansionCoefficients.cs" />
-    <Compile Include="Scattering\Field\PlaneWaveFactory.cs" />
     <Compile Include="Geometry\Region\IRegion.cs" />
     <Compile Include="Geometry\Region\Halfspace.cs" />
     <Compile Include="Scattering\WaveLength.cs" />
     <Compile Include="Tests\Scattering\WaveLength.cs" />
+    <Compile Include="Tests\Scattering\Field.cs" />
+    <Compile Include="Scattering\Field\Field.cs" />
+    <Compile Include="Scattering\Field\FieldFactory.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
