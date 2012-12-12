@@ -97,9 +97,6 @@
     <Compile Include="Geometry\Coordinate.cs" />
     <Compile Include="Scattering\Field\PlaneWave.cs" />
     <Compile Include="Scattering\Field\GaussBeam.cs" />
-    <Compile Include="Scattering\Field\Container.cs" />
-    <Compile Include="Scattering\Field\Aggregate.cs" />
-    <Compile Include="Scattering\Field\IExpansionCoefficients.cs" />
     <Compile Include="Geometry\Region\IRegion.cs" />
     <Compile Include="Geometry\Region\Halfspace.cs" />
     <Compile Include="Scattering\WaveLength.cs" />
@@ -107,6 +104,15 @@
     <Compile Include="Tests\Scattering\Field.cs" />
     <Compile Include="Scattering\Field\Field.cs" />
     <Compile Include="Scattering\Field\FieldFactory.cs" />
+    <Compile Include="Scattering\Field\Perspective.cs" />
+    <Compile Include="Scattering\Field\Superposition.cs" />
+    <Compile Include="Scattering\Field\Expansion.cs" />
+    <Compile Include="Scattering\Basis\IExpansionCoefficients.cs" />
+    <Compile Include="Scattering\Basis\IBasisFunctions.cs" />
+    <Compile Include="Scattering\Field\Incomming.cs" />
+    <Compile Include="Scattering\Field\Outcomming.cs" />
+    <Compile Include="Scattering\Field\MovingElectron.cs" />
+    <Compile Include="Scattering\Field\RegionField.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

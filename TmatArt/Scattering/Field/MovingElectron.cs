@@ -4,7 +4,8 @@ using TmatArt.Numeric.Mathematics;
 
 namespace TmatArt.Scattering.Field
 {
-	public abstract class GausBeam: Field
+	public abstract class MovingElectron: Field
 	{
+		public double velocity;
 	}
 }
