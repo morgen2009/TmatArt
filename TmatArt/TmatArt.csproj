@@ -106,6 +106,8 @@
     <Compile Include="Scattering\Field\PlaneWaveFactory.cs" />
     <Compile Include="Geometry\Region\IRegion.cs" />
     <Compile Include="Geometry\Region\Halfspace.cs" />
+    <Compile Include="Scattering\WaveLength.cs" />
+    <Compile Include="Tests\Scattering\WaveLength.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
