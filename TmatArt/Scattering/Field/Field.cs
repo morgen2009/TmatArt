@@ -2,6 +2,7 @@ using System;
 using TmatArt.Scattering.Medium;
 using TmatArt.Numeric.Mathematics;
 using TmatArt.Geometry;
+using TmatArt.Scattering.Field.Operation;
 
 namespace TmatArt.Scattering.Field
 {
@@ -31,6 +32,12 @@ namespace TmatArt.Scattering.Field
 		/// </summary>
 		/// <param name="e">Euler angle specifying the scattering direction.</param>
 		public abstract Vector3c FarE(Euler e);
+
+		/// <summary>
+		/// Get instance implementing the given operation for the field
+		/// </summary>
+		/// <param name="type">Type object for the interface derived from the Operation.IFieldOperation.</param>
+		public abstract IFieldOperation method(Type type);
 	}
 }
 

@@ -3,6 +3,7 @@ using TmatArt.Geometry;
 using TmatArt.Numeric.Mathematics;
 using TmatArt.Geometry.Region;
 using TmatArt.Scattering.Medium;
+using TmatArt.Scattering.Field.Operation;
 
 namespace TmatArt.Scattering.Field
 {
@@ -14,6 +15,7 @@ namespace TmatArt.Scattering.Field
 		public double beta, phi;
 		public Complex ex, ey;
 		public double  norm;
+		private static System.Collections.Generic.Dictionary<Type, IFieldOperation> methods;
 
 		public enum Polarization {VERTICAL, HORIZONTAL, CIRCULAR_R, CIRCULAR_L};
 
@@ -31,11 +33,6 @@ namespace TmatArt.Scattering.Field
 			}
 		}
 
-		public FieldFactory factory()
-		{
-			return PlaneWaveFactory.Instance();
-		}
-
 		public override Vector3c NearE (Vector3d r)
 		{
 			throw new System.NotImplementedException ();
@@ -45,33 +42,24 @@ namespace TmatArt.Scattering.Field
 		{
 			throw new System.NotImplementedException ();
 		}
-	}
 
-	/// <summary>
-	/// The factory for @PlaneWave class
-	/// </summary>
-	public class PlaneWaveFactory: FieldFactory
-	{
-		private static PlaneWaveFactory instance;
-		private PlaneWaveFactory() { }
-
-		public static PlaneWaveFactory Instance()
+		public override IFieldOperation method(Type type)
 		{
-			if (PlaneWaveFactory.instance != null) {
-				PlaneWaveFactory.instance = new PlaneWaveFactory();
+			// collect classes implementing fields operations
+			if (PlaneWave.methods == null) {
+				// TODO implement injection using some DI framework
+				PlaneWave.methods = new System.Collections.Generic.Dictionary<Type, IFieldOperation>();
+				PlaneWave.methods.Add(typeof(IReflectOperation), Operation.PlaneWaveOperations.Instance());
+				PlaneWave.methods.Add(typeof(IExpansionOperation), Operation.PlaneWaveOperations.Instance());
 			}
 
-			return PlaneWaveFactory.instance;
-		}
-
-		public override Field Reflect(Halfspace region, Isotrop mediumExt)
-		{
-			throw new System.NotImplementedException ();
-		}
-
-		public override Field Transmit(Halfspace region, Isotrop mediumExt)
-		{
-			throw new System.NotImplementedException ();
+			// create object of the corresponding class for given operation
+			if (PlaneWave.methods.ContainsKey(type)) {
+				return (PlaneWave.methods[type] as IFieldOperation).Select(this);
+			} else {
+				// TODO if method is not found, look into parent class
+				throw new Operation.NotFoundMethod (type, this.GetType());
+			}
 		}
 	}
 }

@@ -57,7 +57,6 @@
     <Compile Include="Numeric\Polynomial\Arbitrary.cs" />
     <Compile Include="Numeric\Polynomial\Laguerre.cs" />
     <Compile Include="Numeric\Polynomial\Legendre.cs" />
-    <Compile Include="Scattering\Field.cs" />
     <Compile Include="Scattering\Basis\Angular.cs" />
     <Compile Include="Scattering\Basis\IncSVWF.cs" />
     <Compile Include="Scattering\Basis\OutSVWF.cs" />
@@ -103,16 +102,18 @@
     <Compile Include="Tests\Scattering\WaveLength.cs" />
     <Compile Include="Tests\Scattering\Field.cs" />
     <Compile Include="Scattering\Field\Field.cs" />
-    <Compile Include="Scattering\Field\FieldFactory.cs" />
     <Compile Include="Scattering\Field\Perspective.cs" />
     <Compile Include="Scattering\Field\Superposition.cs" />
     <Compile Include="Scattering\Field\Expansion.cs" />
     <Compile Include="Scattering\Basis\IExpansionCoefficients.cs" />
     <Compile Include="Scattering\Basis\IBasisFunctions.cs" />
-    <Compile Include="Scattering\Field\Incomming.cs" />
-    <Compile Include="Scattering\Field\Outcomming.cs" />
     <Compile Include="Scattering\Field\MovingElectron.cs" />
     <Compile Include="Scattering\Field\RegionField.cs" />
+    <Compile Include="Scattering\Field\Operation\IFieldOperation.cs" />
+    <Compile Include="Scattering\Field\Operation\IReflectOperation.cs" />
+    <Compile Include="Scattering\Field\Operation\IExpansionOperation.cs" />
+    <Compile Include="Scattering\Field\Operation\PlaneWaveOperations.cs" />
+    <Compile Include="Scattering\Field\Operation\NotFoundMethod.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -125,5 +126,6 @@
     <Folder Include="Tests\Geometry\" />
     <Folder Include="Scattering\Field\" />
     <Folder Include="Geometry\Region\" />
+    <Folder Include="Scattering\Field\Operation\" />
   </ItemGroup>
 </Project>

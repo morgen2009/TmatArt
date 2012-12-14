@@ -7,7 +7,7 @@ namespace TmatArt.Scattering.Field
 {
 	public abstract class Expansion : Field
 	{
-		public double nrank, mrank, nmax;
+		public double nrank, mrank;
 		public IExpansionCoefficients coef;
 		public IBasisFunctions basis;
 	}
