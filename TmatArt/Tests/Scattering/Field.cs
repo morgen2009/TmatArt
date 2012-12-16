@@ -29,6 +29,50 @@ namespace TmatArt.Tests.Scattering
 		}
 
 		[Test()]
+		public void PlaneWaveE_H()
+		{
+			// arrange
+			double deg = System.Math.PI / 180;
+			PlaneWave field = new PlaneWave(46*deg, 12*deg, PlaneWave.Polarization.HORIZONTAL);
+			field.wave   = new WaveLength(1.0);
+			field.medium = new Isotrop(1.3);
+			
+			// act
+			Vector3d p0 = new Vector3d(0, 0, 0);
+			Euler e = new Euler(field.phi, field.beta, 0);
+			Vector3d p1 = new Vector3d(0, 0, 1).Rotate(-e) / field.medium.index.re;
+			Vector3c e0 = field.NearE(p0);
+			Vector3c e1 = field.NearE(p1);
+			
+			// assert
+			AssertComplexExtension.AreEqual(e0.x, e1.x, 1E-7, "Ex");
+			AssertComplexExtension.AreEqual(e0.y, e1.y, 1E-7, "Ey");
+			AssertComplexExtension.AreEqual(e0.z, e1.z, 1E-7, "Ez");
+		}
+		
+		[Test()]
+		public void PlaneWaveE_V()
+		{
+			// arrange
+			double deg = System.Math.PI / 180;
+			PlaneWave field = new PlaneWave(46*deg, 12*deg, PlaneWave.Polarization.VERTICAL);
+			field.wave   = new WaveLength(1.0);
+			field.medium = new Isotrop(1.0);
+			
+			// act
+			Vector3d p0 = new Vector3d(0, 0, 0);
+			Euler e = new Euler(field.phi, field.beta, 0);
+			Vector3d p1 = new Vector3d(0, 0, 1).Rotate(-e) / field.medium.index.re;
+			Vector3c e0 = field.NearE(p0);
+			Vector3c e1 = field.NearE(p1);
+			
+			// assert
+			AssertComplexExtension.AreEqual(e0.x, e1.x, 1E-7, "Ex");
+			AssertComplexExtension.AreEqual(e0.y, e1.y, 1E-7, "Ey");
+			AssertComplexExtension.AreEqual(e0.z, e1.z, 1E-7, "Ez");
+		}
+		
+		[Test()]
 		public void TestReflect ()
 		{
 			double deg = System.Math.PI / 180;
