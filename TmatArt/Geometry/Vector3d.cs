@@ -6,7 +6,7 @@ namespace TmatArt.Geometry
 	/// <summary>
 	/// Vector with x, y, z real coordinates
 	/// </summary>
-	public struct Vector3d : IHilbertSpace<Vector3d, double>, IRingOperations<Vector3d>
+	public struct Vector3d : IVector3x<Vector3d, double>
 	{
 		public double x, y, z;
 
@@ -87,6 +87,43 @@ namespace TmatArt.Geometry
 			return System.Math.Sqrt(this.Scalar(this));
 		}
 		
+		/* implementation of IVector3x */
+		public Vector3d RotateX (double angle)
+		{
+			double cos = System.Math.Cos(angle);
+			double sin = System.Math.Sin(angle);
+			
+			return new Vector3d(
+				this.x,
+				this.y * cos + this.z * sin,
+				-this.y * sin + this.z * cos
+				);
+		}
+		
+		public Vector3d RotateY (double angle)
+		{
+			double cos = System.Math.Cos(angle);
+			double sin = System.Math.Sin(angle);
+			
+			return new Vector3d(
+				this.x * cos - this.z * sin,
+				this.y,
+				this.x * sin + this.z * cos
+				);
+		}
+		
+		public Vector3d RotateZ (double angle)
+		{
+			double cos = System.Math.Cos(angle);
+			double sin = System.Math.Sin(angle);
+			
+			return new Vector3d(
+				this.x * cos + this.y * sin,
+				-this.x * sin + this.y * cos,
+				this.z
+				);
+		}
+
 		/* Static operations */
 		public static Vector3d operator + (Vector3d a, Vector3d b) { return a.Add(b); }
 		public static Vector3d operator - (Vector3d a, Vector3d b) { return a.Subtract(b); }

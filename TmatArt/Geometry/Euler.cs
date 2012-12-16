@@ -125,5 +125,33 @@ namespace TmatArt.Geometry
 
 			return res;
 		}
+
+		/// <summary>
+		/// Rotation of coordinate system by Euler angles
+		/// </summary>
+		/// <returns>The original vector in the rotated coordinate system</returns>
+		/// <param name="vector">Vector.</param>
+		/// <param name="euler">Euler angles.</param>
+		public T Rotate<T, Tbase>(T vector) where T: IVector3x<T, Tbase>
+		{
+			T r = vector;
+			
+			// rotate vector around Z axis by angle &alpha;
+			if (this.alpha != 0) {
+				r = r.RotateZ(this.alpha);
+			}
+			
+			// rotate vector around Y' axis by angle &beta;
+			if (this.beta != 0) {
+				r = r.RotateY(this.beta);
+			}
+			
+			// rotate vector around Z'' axis by angle &gamma;
+			if (this.gamma != 0) {
+				r = r.RotateZ(this.gamma);
+			}
+			
+			return r;
+		}
 	}
 }

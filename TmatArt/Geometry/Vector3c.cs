@@ -6,7 +6,7 @@ namespace TmatArt.Geometry
 	/// <summary>
 	/// Vector with x, y, z complex coordinates
 	/// </summary>
-	public struct Vector3c : IHilbertSpace<Vector3c, Complex>, IRingOperations<Vector3c>
+	public struct Vector3c : IVector3x<Vector3c, Complex>
 	{
 		public Complex x, y, z;
 
@@ -99,6 +99,43 @@ namespace TmatArt.Geometry
 			return Complex.Math.Sqrt(this.Scalar(this));
 		}
 		
+		/* implementation of IVector3x */
+		public Vector3c RotateX (double angle)
+		{
+			double cos = System.Math.Cos(angle);
+			double sin = System.Math.Sin(angle);
+			
+			return new Vector3c(
+				this.x,
+				this.y * cos + this.z * sin,
+				-this.y * sin + this.z * cos
+				);
+		}
+		
+		public Vector3c RotateY (double angle)
+		{
+			double cos = System.Math.Cos(angle);
+			double sin = System.Math.Sin(angle);
+			
+			return new Vector3c(
+				this.x * cos - this.z * sin,
+				this.y,
+				this.x * sin + this.z * cos
+				);
+		}
+		
+		public Vector3c RotateZ (double angle)
+		{
+			double cos = System.Math.Cos(angle);
+			double sin = System.Math.Sin(angle);
+			
+			return new Vector3c(
+				this.x * cos + this.y * sin,
+				-this.x * sin + this.y * cos,
+				this.z
+				);
+		}
+
 		/* Static operations */
 		public static Vector3c operator + (Vector3c a, Vector3c b) { return a.Add(b); }
 		public static Vector3c operator - (Vector3c a, Vector3c b) { return a.Subtract(b); }
