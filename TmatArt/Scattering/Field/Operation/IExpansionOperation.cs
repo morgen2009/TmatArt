@@ -2,7 +2,7 @@ using System;
 
 namespace TmatArt.Scattering.Field.Operation
 {
-	public interface IExpansionOperation: IFieldOperation
+	public interface IExpansionOperation
 	{
 		/// <summary>
 		/// Expansion of the field in the regular SVWF

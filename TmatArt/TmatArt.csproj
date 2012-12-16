@@ -109,11 +109,12 @@
     <Compile Include="Scattering\Basis\IBasisFunctions.cs" />
     <Compile Include="Scattering\Field\MovingElectron.cs" />
     <Compile Include="Scattering\Field\RegionField.cs" />
-    <Compile Include="Scattering\Field\Operation\IFieldOperation.cs" />
     <Compile Include="Scattering\Field\Operation\IReflectOperation.cs" />
     <Compile Include="Scattering\Field\Operation\IExpansionOperation.cs" />
-    <Compile Include="Scattering\Field\Operation\PlaneWaveOperations.cs" />
     <Compile Include="Scattering\Field\Operation\NotFoundMethod.cs" />
+    <Compile Include="Scattering\Field\Operation\ServiceContainer.cs" />
+    <Compile Include="Scattering\Field\Operation\IFieldOperation.cs" />
+    <Compile Include="Scattering\Field\Operation\PlaneWaveService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

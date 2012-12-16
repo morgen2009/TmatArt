@@ -15,7 +15,7 @@ namespace TmatArt.Scattering.Field
 		public double beta, phi;
 		public Complex ex, ey;
 		public double  norm;
-		private static System.Collections.Generic.Dictionary<Type, IFieldOperation> methods;
+		private static ServiceContainer<PlaneWave> container;
 
 		public enum Polarization {VERTICAL, HORIZONTAL, CIRCULAR_R, CIRCULAR_L};
 
@@ -43,23 +43,17 @@ namespace TmatArt.Scattering.Field
 			throw new System.NotImplementedException ();
 		}
 
-		public override IFieldOperation method(Type type)
+		public override T Operation<T>()
 		{
 			// collect classes implementing fields operations
-			if (PlaneWave.methods == null) {
-				// TODO implement injection using some DI framework
-				PlaneWave.methods = new System.Collections.Generic.Dictionary<Type, IFieldOperation>();
-				PlaneWave.methods.Add(typeof(IReflectOperation), Operation.PlaneWaveOperations.Instance());
-				PlaneWave.methods.Add(typeof(IExpansionOperation), Operation.PlaneWaveOperations.Instance());
+			if (PlaneWave.container == null) {
+				PlaneWave.container = new ServiceContainer<PlaneWave>();
+				PlaneWave.container.Register<IReflectOperation, Operation.PlaneWaveService>();
+				PlaneWave.container.Register<IExpansionOperation, Operation.PlaneWaveService>();
 			}
 
 			// create object of the corresponding class for given operation
-			if (PlaneWave.methods.ContainsKey(type)) {
-				return (PlaneWave.methods[type] as IFieldOperation).Select(this);
-			} else {
-				// TODO if method is not found, look into parent class
-				throw new Operation.NotFoundMethod (type, this.GetType());
-			}
+			return PlaneWave.container.Resolve<T>(this);
 		}
 	}
 }

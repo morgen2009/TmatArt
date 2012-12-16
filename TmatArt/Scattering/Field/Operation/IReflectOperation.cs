@@ -3,7 +3,7 @@ using TmatArt.Geometry.Region;
 
 namespace TmatArt.Scattering.Field.Operation
 {
-	public interface IReflectOperation: IFieldOperation
+	public interface IReflectOperation
 	{
 		/// <summary>
 		/// Reflection of the field on the specified boundary of the region

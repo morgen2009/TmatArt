@@ -3,24 +3,23 @@ using TmatArt.Geometry.Region;
 
 namespace TmatArt.Scattering.Field.Operation
 {
-	public class PlaneWaveOperations: IReflectOperation, IExpansionOperation
+	public class PlaneWaveService: IReflectOperation, IExpansionOperation, IFieldOperation<PlaneWave>
 	{
 		/* begin of singleton pattern */
-		private static PlaneWaveOperations instance;
-		private PlaneWaveOperations () { }
-		public static PlaneWaveOperations Instance()
+		private static PlaneWaveService instance;
+		private PlaneWaveService () { }
+		public static PlaneWaveService Instance()
 		{
-			if (PlaneWaveOperations.instance == null) {
-				PlaneWaveOperations.instance = new PlaneWaveOperations();
+			if (PlaneWaveService.instance == null) {
+				PlaneWaveService.instance = new PlaneWaveService();
 			}
 
-			return PlaneWaveOperations.instance;
+			return PlaneWaveService.instance;
 		}
 		/* end of singleton pattern */
 
-		public IFieldOperation Select(Field field)
+		public void SetField(PlaneWave field)
 		{
-			//this.field = field;
 			throw new System.NotImplementedException ();
 		}
 

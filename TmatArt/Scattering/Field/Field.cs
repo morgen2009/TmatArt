@@ -36,8 +36,8 @@ namespace TmatArt.Scattering.Field
 		/// <summary>
 		/// Get instance implementing the given operation for the field
 		/// </summary>
-		/// <param name="type">Type object for the interface derived from the Operation.IFieldOperation.</param>
-		public abstract IFieldOperation method(Type type);
+		/// <param name="T">IFieldOperation interface.</param>
+		public abstract T Operation<T>();
 	}
 }
 

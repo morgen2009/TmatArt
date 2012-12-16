@@ -37,7 +37,7 @@ namespace TmatArt.Tests.Scattering
 			field.medium = new Isotrop(1.3);
 
 			// test
-			PlaneWave reflect = (field.method(typeof(IReflectOperation)) as IReflectOperation).Reflect(new Halfspace(1), new Isotrop(1.5)) as PlaneWave;
+			PlaneWave reflect = field.Operation<IReflectOperation>().Reflect(new Halfspace(1), new Isotrop(1.5)) as PlaneWave;
 
 			// Snell's law
 			Assert.AreEqual(System.Math.Sin(field.beta)*field.medium.index, System.Math.Sin(reflect.beta)*reflect.medium.index);
@@ -45,7 +45,7 @@ namespace TmatArt.Tests.Scattering
 			// Brewster's angle
 			
 			// Check continous energy by transmission
-			PlaneWave transmit = (field.method(typeof(IReflectOperation)) as IReflectOperation).Transmit(new Halfspace(1), new Isotrop(1.5)) as PlaneWave;
+			PlaneWave transmit = field.Operation<IReflectOperation>().Transmit(new Halfspace(1), new Isotrop(1.5)) as PlaneWave;
 			Vector3d point = new Vector3d(0, 0, 1);
 			double before = field.NearE(point).Length().re;
 			double after  = (reflect.NearE(point) + transmit.NearE(point)).Length().re;
