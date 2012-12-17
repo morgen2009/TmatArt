@@ -115,6 +115,7 @@
     <Compile Include="Scattering\Field\Operation\PlaneWaveService.cs" />
     <Compile Include="Geometry\EulerExtension.cs" />
     <Compile Include="Geometry\IVector3x.cs" />
+    <Compile Include="Scattering\Fresnel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
