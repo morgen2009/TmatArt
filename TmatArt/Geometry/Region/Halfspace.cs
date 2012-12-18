@@ -4,7 +4,7 @@ namespace TmatArt.Geometry.Region
 {
 	public class Halfspace: IRegion
 	{
-		double z = 0;
+		public readonly double z = 0;
 
 		public Halfspace (double z)
 		{
