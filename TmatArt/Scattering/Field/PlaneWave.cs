@@ -39,7 +39,7 @@ namespace TmatArt.Scattering.Field
 			Complex wavenumber = (2*System.Math.PI / this.wave.Length()) * this.medium.index;
 			Complex phase = Complex.AIM * wavenumber * r.Rotate(e).z;
 			Vector3c v = new Vector3c(this.ex, this.ey, 0) * Complex.Math.Exp(phase) * this.norm;
-			return v.Rotate(-e)*this.norm;
+			return v.Rotate(-e);
 		}
 
 		public override Vector3c FarE (Euler e)
