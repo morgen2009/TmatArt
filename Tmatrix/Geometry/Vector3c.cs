@@ -145,6 +145,40 @@ namespace TmatArt.Geometry
 		public static Vector3c operator / (Vector3c a, Complex b) { return a.Divide(b); }
 		public static Complex operator * (Vector3c a, Vector3c b) { return a.Scalar(b);	}
 		public static Vector3c operator ^ (Vector3c a, Vector3c b) { return a.Multiply(b); }
+
+		/// <summary>
+		/// Real part
+		/// </summary>
+		public Vector3d re
+		{
+			get
+			{
+				return new Vector3d(this.x.re, this.y.re, this.z.re);
+			}
+			set
+			{
+				this.x.re = value.x;
+				this.y.re = value.y;
+				this.z.re = value.z;
+			}
+		}
+
+		/// <summary>
+		/// Imaginary part
+		/// </summary>
+		public Vector3d im
+		{
+			get
+			{
+				return new Vector3d(this.x.im, this.y.im, this.z.im);
+			}
+			set
+			{
+				this.x.im = value.x;
+				this.y.im = value.y;
+				this.z.im = value.z;
+			}
+		}
 	}
 }
 
