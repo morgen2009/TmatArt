@@ -1,14 +1,13 @@
 using System;
 using NUnit.Framework;
-using TmatArt.Numeric;
 
-namespace TmatArt.Test
+namespace TmatArt.Numeric
 {
 	[TestFixture()]
-	public class TestDouble
+	public class DoubleTest
 	{
 		[Test()]
-		public void TestPow ()
+		public void Pow ()
 		{
 			double x = 0.75, y = 1;
 			for (int i = 0; i < 12; i++)
@@ -17,7 +16,6 @@ namespace TmatArt.Test
 				Assert.AreEqual(y, x.Pow(i));
 				y *= x;
 			}
-			//Assert.Fail();
 		}
 	}
 }

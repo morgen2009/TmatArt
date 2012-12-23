@@ -1,12 +1,11 @@
 using System;
 using NUnit.Framework;
-using TmatArt.Numeric.Integration;
 using System.Linq;
 
-namespace TmatArt.Test
+namespace TmatArt.Numeric.Integration
 {
 	[TestFixture()]
-	public class TestIntegration
+	public class MeshTest
 	{
 		internal class TestCaseData
 		{
@@ -28,7 +27,7 @@ namespace TmatArt.Test
 		}
 		
 		[Test()]
-		public void testMeshRect ()
+		public void RectMesh ()
 		{
 			int count = 1003;
 			TestCaseData [] source = this.getTestCaseSource();
@@ -51,7 +50,7 @@ namespace TmatArt.Test
 		}
 
 		[Test()]
-		public void testMeshGauss ()
+		public void GaussMesh ()
 		{
 			int count = 10;
 			TestCaseData [] source = this.getTestCaseSource();
@@ -75,7 +74,7 @@ namespace TmatArt.Test
 		}
 
 		[Test()]
-		public void testMeshAbitrary ()
+		public void AbitraryMesh ()
 		{
 			int count = 3;
 			TestCaseData [] source = this.getTestCaseSource();

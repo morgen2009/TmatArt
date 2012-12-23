@@ -1,11 +1,10 @@
 using System;
 using NUnit.Framework;
-using TmatArt.Numeric.Mathematics;
 
-namespace TmatArt.Tests.Numeric
+namespace TmatArt.Numeric.Mathematics
 {
 	[TestFixture()]
-	public class TestComplex
+	public class ComplexTest
 	{
 		const double EqualityThreshold = 1E-10;
 
@@ -29,7 +28,7 @@ namespace TmatArt.Tests.Numeric
 			case ComplexFixtures.Operation.Divide:    res = a/b; break;
 			}
 
-			AssertComplexExtension.AreEqual(expected, res, TestComplex.EqualityThreshold);
+			AssertComplexExtension.AreEqual(expected, res, ComplexTest.EqualityThreshold);
 		}
 
 		[Test, TestCaseSource(typeof(ComplexFixtures), "UnaryOperations")]
@@ -44,7 +43,7 @@ namespace TmatArt.Tests.Numeric
 			case ComplexFixtures.Operation.Abs:       res = Complex.Math.Abs(a); break;
 			}
 
-			AssertComplexExtension.AreEqual(expected, res, TestComplex.EqualityThreshold);
+			AssertComplexExtension.AreEqual(expected, res, ComplexTest.EqualityThreshold);
 		}
 
 		[Test, TestCaseSource(typeof(ComplexFixtures), "MathFunctions")]
@@ -60,15 +59,15 @@ namespace TmatArt.Tests.Numeric
 			case ComplexFixtures.Function.Log: res = Complex.Math.Log(a); break;
 			}
 			
-			AssertComplexExtension.AreEqual(expected, res, TestComplex.EqualityThreshold);
+			AssertComplexExtension.AreEqual(expected, res, ComplexTest.EqualityThreshold);
 		}
 
 		[Test()]
 		public void Aim ()
 		{
 			/* degrees of imaginary identity */
-			AssertComplexExtension.AreEqual(Complex.ONE, Complex.Math.Aim(4), TestComplex.EqualityThreshold);
-			AssertComplexExtension.AreEqual(Complex.AIM, Complex.Math.Aim(1), TestComplex.EqualityThreshold);
+			AssertComplexExtension.AreEqual(Complex.ONE, Complex.Math.Aim(4), ComplexTest.EqualityThreshold);
+			AssertComplexExtension.AreEqual(Complex.AIM, Complex.Math.Aim(1), ComplexTest.EqualityThreshold);
 
 			/* some relations for trigonometric functions */
 /*			Complex r = new Complex(1,1);
@@ -82,7 +81,7 @@ namespace TmatArt.Tests.Numeric
 		{
 			Complex r = new Complex(re, im);
 			Complex s = Complex.Math.Sqrt(r);
-			AssertComplexExtension.AreEqual(r, s*s, TestComplex.EqualityThreshold, "Sqrt");
+			AssertComplexExtension.AreEqual(r, s*s, ComplexTest.EqualityThreshold, "Sqrt");
 		}
 
 		[Test, TestCaseSource(typeof(ComplexFixtures), "SqrtCases")]
@@ -90,7 +89,7 @@ namespace TmatArt.Tests.Numeric
 		{
 			Complex r = new Complex(re, im);
 			Complex s = Complex.Math.Pow(r, 2);
-			AssertComplexExtension.AreEqual(r*r, s, TestComplex.EqualityThreshold, "Pow");
+			AssertComplexExtension.AreEqual(r*r, s, ComplexTest.EqualityThreshold, "Pow");
 		}
 	}
 

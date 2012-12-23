@@ -1,9 +1,8 @@
 using System;
 using NUnit.Framework;
-using TmatArt.Numeric.Mathematics;
 using System.Collections;
 
-namespace TmatArt.Tests.Numeric
+namespace TmatArt.Numeric.Mathematics
 {
 	public class ComplexFixtures
 	{

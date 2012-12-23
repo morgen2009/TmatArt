@@ -1,9 +1,8 @@
 using System;
 using NUnit.Framework;
-using TmatArt.Geometry;
 using System.Collections;
 
-namespace TmatArt.Tests.Geometry
+namespace TmatArt.Geometry
 {
 	public class RotationFixtures
 	{

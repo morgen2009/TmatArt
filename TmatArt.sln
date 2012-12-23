@@ -1,20 +1,29 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TmatArt", "TmatArt\TmatArt.csproj", "{0AF63EA8-112C-4C6E-89E6-1EDCAB831A3E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tmatrix", "Tmatrix\Tmatrix.csproj", "{0AF63EA8-112C-4C6E-89E6-1EDCAB831A3E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tmatrix.Tests", "Tmatrix.Tests\Tmatrix.Tests.csproj", "{57294326-343B-4D60-BE68-3AEBB1752D67}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
 		Release|x86 = Release|x86
+		Default|Any CPU = Default|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{0AF63EA8-112C-4C6E-89E6-1EDCAB831A3E}.Debug|x86.ActiveCfg = Debug|x86
 		{0AF63EA8-112C-4C6E-89E6-1EDCAB831A3E}.Debug|x86.Build.0 = Debug|x86
 		{0AF63EA8-112C-4C6E-89E6-1EDCAB831A3E}.Release|x86.ActiveCfg = Release|x86
 		{0AF63EA8-112C-4C6E-89E6-1EDCAB831A3E}.Release|x86.Build.0 = Release|x86
+		{57294326-343B-4D60-BE68-3AEBB1752D67}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{57294326-343B-4D60-BE68-3AEBB1752D67}.Debug|x86.Build.0 = Debug|Any CPU
+		{57294326-343B-4D60-BE68-3AEBB1752D67}.Default|Any CPU.ActiveCfg = Debug|Any CPU
+		{57294326-343B-4D60-BE68-3AEBB1752D67}.Default|Any CPU.Build.0 = Debug|Any CPU
+		{57294326-343B-4D60-BE68-3AEBB1752D67}.Release|x86.ActiveCfg = Release|Any CPU
+		{57294326-343B-4D60-BE68-3AEBB1752D67}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = TmatArt\TmatArt.csproj
+		StartupItem = TmatArt\Tmatrix.csproj
 	EndGlobalSection
 EndGlobal

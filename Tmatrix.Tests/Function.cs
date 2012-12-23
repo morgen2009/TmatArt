@@ -1,16 +1,15 @@
 using System;
 using NUnit.Framework;
-using TmatArt.Numeric;
 using TmatArt.Numeric.Function;
 using System.Linq;
 
-namespace TmatArt.Test
+namespace TmatArt.Numeric
 {
 	[TestFixture()]
-	public class TestFunction
+	public class FunctionTest
 	{
 		[Test()]
-		public void testSphBesselJ ()
+		public void SphBesselJ ()
 		{
 			double[] x = {1E-10, 1, 2, 3};
 			int n = 1;

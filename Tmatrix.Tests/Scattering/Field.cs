@@ -1,21 +1,18 @@
 using System;
 using NUnit.Framework;
-using TmatArt.Scattering.Field;
 using TmatArt.Scattering.Field.Operation;
 using TmatArt.Scattering.Medium;
-using TmatArt.Scattering;
 using TmatArt.Numeric.Mathematics;
-using TmatArt.Tests.Numeric;
 using TmatArt.Geometry.Region;
 using TmatArt.Geometry;
 
-namespace TmatArt.Tests.Scattering
+namespace TmatArt.Scattering.Field
 {
 	[TestFixture()]
-	public class TestField
+	public class FieldTest
 	{
 		[Test()]
-		public void TestCase ()
+		public void Initialization ()
 		{
 			double deg = System.Math.PI / 180;
 
@@ -73,7 +70,7 @@ namespace TmatArt.Tests.Scattering
 		}
 		
 		[Test()]
-		public void TestReflectEnergy ([Values(0, -1000, 1000)]double z, [Values(45, 60)]double beta, [Values(0,1,2,3)]PlaneWave.Polarization pol)
+		public void ContinousEnergy ([Values(0, -1000, 1000)]double z, [Values(45, 60)]double beta, [Values(0,1,2,3)]PlaneWave.Polarization pol)
 		{
 			// arrange
 			double deg = System.Math.PI / 180;
@@ -106,7 +103,7 @@ namespace TmatArt.Tests.Scattering
 		}
 
 		[Test()]
-		public void TestReflectTang ([Values(0, -1000, 1000)]double z, [Values(45, 60)]double beta, [Values(0,1,2,3)]PlaneWave.Polarization pol)
+		public void ContinousTangential ([Values(0, -1000, 1000)]double z, [Values(45, 60)]double beta, [Values(0,1,2,3)]PlaneWave.Polarization pol)
 		{
 			// arrange
 			double deg = System.Math.PI / 180;

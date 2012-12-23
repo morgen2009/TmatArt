@@ -1,16 +1,15 @@
 using System;
 using NUnit.Framework;
-using TmatArt.Numeric;
 using System.Linq;
 using System.Collections.Generic;
 
-namespace TmatArt.Test
+namespace TmatArt.Numeric
 {
 	[TestFixture()]
-	public class TestPolynomial
+	public class PolynomialTest
 	{
 		[Test()]
-		public void testLegendre ()
+		public void Legendre ()
 		{
 			double[] x = {-0.5, -0.25, 0, 0.25, 0.5, 0.75, 1};
 			int n = 4;
@@ -27,7 +26,7 @@ namespace TmatArt.Test
 		}
 		
 		[Test()]
-		public void testLegendreD ()
+		public void LegendreD ()
 		{
 			double[] x = {-1+1E-7, -0.5, 0, 0.25, 0.5, 0.75, 1-1E-7};
 			int n = 4;
@@ -46,7 +45,7 @@ namespace TmatArt.Test
 		}
 		
 		[Test()]
-		public void testLegendreRoots ()
+		public void LegendreRoots ()
 		{
 			Numeric.Polynomial.Legendre pol = new Numeric.Polynomial.Legendre();
 			
@@ -68,7 +67,7 @@ namespace TmatArt.Test
 		}
 		
 		[Test()]
-		public void testLaguerre ()
+		public void Laguerre ()
 		{
 			double[] x = {-0.5, -0.25, 0, 0.25, 0.5, 0.75, 1};
 			int n = 3;
@@ -85,7 +84,7 @@ namespace TmatArt.Test
 		}
 		
 		[Test()]
-		public void testLaguerreD ()
+		public void LaguerreD ()
 		{
 			double[] x = {-0.5, -0.25, 0, 0.25, 0.5, 0.75, 1};
 			int n = 3;
@@ -102,7 +101,7 @@ namespace TmatArt.Test
 		}
 		
 		[Test()]
-		public void testLeguerreRoots ()
+		public void LeguerreRoots ()
 		{
 			double alpha = 0.5;
 			int[] ncase = { 1, 2, 3, 4 };
@@ -123,7 +122,7 @@ namespace TmatArt.Test
 		}
 		
 		[Test()]
-		public void testArbitraryLegendre ()
+		public void ArbitraryLegendre ()
 		{
 			int n = 5;
 			Numeric.Polynomial.Arbitrary pol1 = new Numeric.Polynomial.Arbitrary(-1, 1, n, x=>1, 100);
@@ -141,7 +140,7 @@ namespace TmatArt.Test
 		}
 		
 		[Test()]
-		public void testArbitraryLaguerre ()
+		public void ArbitraryLaguerre ()
 		{
 			int n = 4;
 			double a = 0.25;
@@ -160,7 +159,7 @@ namespace TmatArt.Test
 		}
 		
 		[Test()]
-		public void testArbitrarySelf ()
+		public void ArbitrarySelf ()
 		{
 			int[] ncase = { 1, 2, 3, 4 };
 			

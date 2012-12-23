@@ -1,14 +1,13 @@
 using System;
 using NUnit.Framework;
-using TmatArt.Scattering.Indexing;
 using TmatArt.Scattering.Indexing.Mappers;
 using TmatArt.Geometry;
 using System.Linq;
 
-namespace TmatArt.Test
+namespace TmatArt.Scattering.Indexing
 {
 	[TestFixture()]
-	public class TestIndex
+	public class IndexTest
 	{
 		public class MapperTest: Mapper {
 			public MapperTest (Symmetry symmetry, int nrank, int mrank): base(symmetry, nrank, mrank)

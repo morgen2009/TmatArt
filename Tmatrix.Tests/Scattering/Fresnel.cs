@@ -1,11 +1,10 @@
 using System;
 using NUnit.Framework;
-using TmatArt.Scattering;
 
-namespace TmatArt.Tests.Scattering
+namespace TmatArt.Scattering
 {
 	[TestFixture()]
-	public class TestFresnel
+	public class FresnelTest
 	{
 		[Test()]
 		public void ReflectanceTransmittance ()

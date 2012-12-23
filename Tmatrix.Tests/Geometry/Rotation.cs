@@ -1,12 +1,11 @@
 using System;
 using NUnit.Framework;
 using TmatArt.Numeric.Mathematics;
-using TmatArt.Geometry;
 
-namespace TmatArt.Tests.Geometry
+namespace TmatArt.Geometry
 {
 	[TestFixture()]
-	public class TestRotation
+	public class RotationTest
 	{
 		[Test()]
 		public void RotationAxis ()

@@ -1,16 +1,16 @@
 using System;
 using NUnit.Framework;
-using TmatArt.Scattering.Basis;
 using TmatArt.Numeric.Polynomial;
 using TmatArt.Numeric;
 
-namespace TmatArt.Test
+namespace TmatArt.Scattering.Basis
 {
 	[TestFixture()]
-	public class TestBasis
+	[Ignore("Class Scattering.Basis.Angular is not implemented")]
+	public class BasisTest
 	{
 		[Test()]
-		public void TestLegendreNorm ()
+		public void testLegendreNorm ()
 		{
 			double theta = 0.45;
 			int nrank = 5;
@@ -26,7 +26,7 @@ namespace TmatArt.Test
 			//Assert.Fail();
 		}
 		[Test()]
-		public void TestAngular ()
+		public void testAngular ()
 		{
 			double theta = 0.45;
 			int nrank = 5;

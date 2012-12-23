@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{57294326-343B-4D60-BE68-3AEBB1752D67}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Tmatrix.Tests</RootNamespace>
+    <AssemblyName>Tmatrix.Tests</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="nunit.framework">
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Double.cs" />
+    <Compile Include="Function.cs" />
+    <Compile Include="Integration.cs" />
+    <Compile Include="Polynomial.cs" />
+    <Compile Include="Geometry\Rotation.cs" />
+    <Compile Include="Geometry\RotationFixtures.cs" />
+    <Compile Include="Numeric\Complex.cs" />
+    <Compile Include="Numeric\ComplexFixtures.cs" />
+    <Compile Include="Scattering\Basis.cs" />
+    <Compile Include="Scattering\Index.cs" />
+    <Compile Include="Scattering\WaveLength.cs" />
+    <Compile Include="Scattering\Field.cs" />
+    <Compile Include="Scattering\Fresnel.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\TmatArt\Tmatrix.csproj">
+      <Project>{0AF63EA8-112C-4C6E-89E6-1EDCAB831A3E}</Project>
+      <Name>Tmatrix</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>
