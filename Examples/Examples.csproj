@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5D776DC8-AF89-4B9D-A0A9-30BAB493C51F}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Examples</RootNamespace>
+    <AssemblyName>Examples</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <ConsolePause>False</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <Externalconsole>True</Externalconsole>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Common\Attribute\Example.cs" />
+    <Compile Include="Examples\PlaneWave.cs" />
+    <Compile Include="Common\Limit.cs" />
+    <Compile Include="Common\Container.cs" />
+    <Compile Include="Common\RunContext.cs" />
+    <Compile Include="Common\Attribute\ExampleGroup.cs" />
+    <Compile Include="Common\Attribute\IExample.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Common\" />
+    <Folder Include="Common\Attribute\" />
+    <Folder Include="Examples\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Tmatrix\Tmatrix.csproj">
+      <Project>{0AF63EA8-112C-4C6E-89E6-1EDCAB831A3E}</Project>
+      <Name>Tmatrix</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

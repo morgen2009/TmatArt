@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tmatrix", "Tmatrix\Tmatrix.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tmatrix.Tests", "Tmatrix.Tests\Tmatrix.Tests.csproj", "{57294326-343B-4D60-BE68-3AEBB1752D67}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Examples", "Examples\Examples.csproj", "{5D776DC8-AF89-4B9D-A0A9-30BAB493C51F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -22,8 +24,14 @@ Global
 		{57294326-343B-4D60-BE68-3AEBB1752D67}.Default|Any CPU.Build.0 = Debug|Any CPU
 		{57294326-343B-4D60-BE68-3AEBB1752D67}.Release|x86.ActiveCfg = Release|Any CPU
 		{57294326-343B-4D60-BE68-3AEBB1752D67}.Release|x86.Build.0 = Release|Any CPU
+		{5D776DC8-AF89-4B9D-A0A9-30BAB493C51F}.Debug|x86.ActiveCfg = Debug|x86
+		{5D776DC8-AF89-4B9D-A0A9-30BAB493C51F}.Debug|x86.Build.0 = Debug|x86
+		{5D776DC8-AF89-4B9D-A0A9-30BAB493C51F}.Default|Any CPU.ActiveCfg = Debug|x86
+		{5D776DC8-AF89-4B9D-A0A9-30BAB493C51F}.Default|Any CPU.Build.0 = Debug|x86
+		{5D776DC8-AF89-4B9D-A0A9-30BAB493C51F}.Release|x86.ActiveCfg = Release|x86
+		{5D776DC8-AF89-4B9D-A0A9-30BAB493C51F}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = TmatArt\Tmatrix.csproj
+		StartupItem = Examples\Examples.csproj
 	EndGlobalSection
 EndGlobal
