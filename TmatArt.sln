@@ -32,6 +32,6 @@ Global
 		{5D776DC8-AF89-4B9D-A0A9-30BAB493C51F}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Examples\Examples.csproj
+		StartupItem = Tmatrix\Tmatrix.csproj
 	EndGlobalSection
 EndGlobal
