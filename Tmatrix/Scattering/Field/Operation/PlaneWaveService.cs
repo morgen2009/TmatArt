@@ -36,7 +36,7 @@ namespace TmatArt.Scattering.Field.Operation
 		public Field Transmit(Halfspace region, Medium.Isotrop mediumExt)
 		{
 			Fresnel.Coefficients coef = Fresnel.Compute(this.field.medium.index.re, mediumExt.index.re, this.field.beta);
-			PlaneWave res = new PlaneWave(coef.theta2, this.field.phi);
+			PlaneWave res = new PlaneWave(coef.thetaOut.re, this.field.phi);
 			double wavenumber = 2 * System.Math.PI / field.wave.value;
 			Complex phase1 = Complex.AIM * System.Math.Cos(field.beta) * field.medium.index.re * region.z * wavenumber;
 			Complex phase2 = -Complex.AIM * System.Math.Cos(res.beta) * mediumExt.index.re * region.z * wavenumber;

@@ -10,23 +10,33 @@ namespace TmatArt.Scattering
 	{
 		public struct Coefficients
 		{
-			public double theta1, theta2;
-			public double tp, ts, rp, rs;
-			public double area;
+			public Complex thetaIn, thetaOut;
+			public Complex tp, ts, rp, rs;
 		}
 
-		public static Coefficients Compute(double index1, double index2, double theta1)
+		private static Complex ThetaOut(Complex thetaIn, Complex indexIn, Complex indexOut)
+		{
+			return Complex.Math.Asin(Complex.Math.Sin(thetaIn)*indexIn/indexOut);
+		}
+		
+		public static Coefficients Compute(Complex thetaIn, Complex indexIn, Complex indexOut)
 		{
 			var res = new Coefficients();
-			res.theta1 = theta1;
-			res.theta2 = Math.Asin(Math.Sin(theta1)*index1/index2);
-			double cos1 = Math.Cos(res.theta1);
-			double cos2 = Math.Cos(res.theta2);
-			res.rp = (index2 * cos1 - index1 * cos2) / (index1 * cos2 + index2 * cos1);
-			res.rs = (index1 * cos1 - index2 * cos2) / (index1 * cos1 + index2 * cos2);
-			res.tp = 2 * index1 * cos1 / (index1 * cos2 + index2 * cos1);
-			res.ts = 2 * index1 * cos1 / (index1 * cos1 + index2 * cos2);
-			res.area = cos2 / cos1;
+
+			// scattering angle for transmitted wave
+			res.thetaIn  = thetaIn;
+			res.thetaOut = Fresnel.ThetaOut(thetaIn, indexIn, indexOut);
+			Complex cosIn  = Complex.Math.Cos(res.thetaIn);
+			Complex cosOut = Complex.Math.Cos(res.thetaOut);
+
+			// coefficients for reflected wave
+			res.rp = (indexOut * cosIn - indexIn * cosOut) / (indexIn * cosOut + indexOut * cosIn);
+			res.rs = (indexIn * cosIn - indexOut * cosOut) / (indexIn * cosIn + indexOut * cosOut);
+
+			// coefficients for transmitted wave
+			res.tp = 2 * indexIn * cosIn / (indexIn * cosOut + indexOut * cosIn);
+			res.ts = 2 * indexIn * cosIn / (indexIn * cosIn + indexOut * cosOut);
+
 			return res;
 		}
 	}
