@@ -48,6 +48,21 @@ namespace TmatArt.Numeric.Mathematics
 			return new Complex(sin*delta_p, cos*delta_m) / new Complex(cos*delta_p, -sin*delta_m);
 		}
 
+		public Complex Acos (Complex arg)
+		{
+			return -Complex.AIM * this.Log(arg + Complex.AIM * this.Sqrt(1 - arg*arg));
+		}
+		
+		public Complex Asin (Complex arg)
+		{
+			return -Complex.AIM * this.Log(this.Sqrt(1 - arg*arg) + Complex.AIM * arg);
+		}
+		
+		public Complex Atan (Complex arg)
+		{
+			return Complex.AIM / 2.0 * this.Log((Complex.AIM + arg) / (Complex.AIM - arg));
+		}
+		
 		public Complex Log (Complex arg)
 		{
 			// get normalized presentation of complex number

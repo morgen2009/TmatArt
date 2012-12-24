@@ -8,6 +8,10 @@ namespace TmatArt.Numeric.Mathematics
 		T Cos(T arg);
 		T Sin(T arg);
 		T Tan(T arg);
+		T Acos(T arg);
+		T Asin(T arg);
+		T Atan(T arg);
+
 		T Log(T arg);
 		T Exp(T arg);
 		T Sqrt(T arg);
