@@ -132,5 +132,11 @@ namespace TmatArt.Numeric.Mathematics
 		public static Complex ZERO = new Complex(0, 0);
 		public static Complex ONE  = new Complex(1, 0);
 		public static Complex AIM  = new Complex(0, 1);
+
+		/* addional methods */
+		public Complex Conjugate()
+		{
+			return new Complex(re, -im);
+		}
 	}
 }

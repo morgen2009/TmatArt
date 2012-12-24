@@ -16,6 +16,10 @@ namespace TmatArt.Numeric.Mathematics
 
 		public Complex Cos (Complex arg)
 		{
+			if (arg.im == 0) {
+				return System.Math.Cos(arg.re);
+			}
+
 			double eim  = System.Math.Exp(arg.im) / 2;
 			double eim1 = 0.25E0 / eim;
 			
@@ -27,6 +31,10 @@ namespace TmatArt.Numeric.Mathematics
 
 		public Complex Sin (Complex arg)
 		{
+			if (arg.im == 0) {
+				return System.Math.Sin(arg.re);
+			}
+			
 			double eim  = System.Math.Exp(arg.im) / 2;
 			double eim1 = 0.25E0 / eim;
 			
@@ -38,6 +46,10 @@ namespace TmatArt.Numeric.Mathematics
 
 		public Complex Tan (Complex arg)
 		{
+			if (arg.im == 0) {
+				return System.Math.Tan(arg.re);
+			}
+			
 			double eim  = System.Math.Exp(arg.im);
 			double eim1 = 1E0 / eim;
 			double delta_p = eim + eim1;
@@ -50,17 +62,29 @@ namespace TmatArt.Numeric.Mathematics
 
 		public Complex Acos (Complex arg)
 		{
-			return -Complex.AIM * this.Log(arg + Complex.AIM * this.Sqrt(1 - arg*arg));
+			if (arg.im == 0) {
+				return System.Math.Acos(arg.re);
+			} else {
+				return -Complex.AIM * this.Log(arg + Complex.AIM * this.Sqrt(1 - arg*arg));
+			}
 		}
 		
 		public Complex Asin (Complex arg)
 		{
-			return -Complex.AIM * this.Log(this.Sqrt(1 - arg*arg) + Complex.AIM * arg);
+			if (arg.im == 0) {
+				return System.Math.Asin(arg.re);
+			} else {
+				return -Complex.AIM * this.Log(this.Sqrt(1 - arg*arg) + Complex.AIM * arg);
+			}
 		}
 		
 		public Complex Atan (Complex arg)
 		{
-			return Complex.AIM / 2.0 * this.Log((Complex.AIM + arg) / (Complex.AIM - arg));
+			if (arg.im == 0) {
+				return System.Math.Atan(arg.re);
+			} else {
+				return Complex.AIM / 2.0 * this.Log((Complex.AIM + arg) / (Complex.AIM - arg));
+			}
 		}
 		
 		public Complex Log (Complex arg)
@@ -121,11 +145,6 @@ namespace TmatArt.Numeric.Mathematics
 				case 1:  return new Complex( 0, 1);
 				default: return new Complex( 1, 0);
 			}
-		}
-
-		public Complex Conjugate (Complex arg)
-		{
-			return new Complex(arg.re, -arg.im);
 		}
 
 		private double Argument (Complex arg, double norm)
