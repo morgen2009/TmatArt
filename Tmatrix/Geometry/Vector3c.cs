@@ -71,9 +71,9 @@ namespace TmatArt.Geometry
 		public Vector3c Multiply(Vector3c a)
 		{
 			Vector3c a1 = new Vector3c(
-				Complex.Math.Conjugate(a.x),
-				Complex.Math.Conjugate(a.y),
-				Complex.Math.Conjugate(a.z)
+				a.x.Conjugate(),
+				a.y.Conjugate(),
+				a.z.Conjugate()
 			);
 
 			return new Vector3c(
@@ -87,9 +87,9 @@ namespace TmatArt.Geometry
 		public Complex Scalar(Vector3c a)
 		{
 			Vector3c a1 = new Vector3c(
-				Complex.Math.Conjugate(a.x),
-				Complex.Math.Conjugate(a.y),
-				Complex.Math.Conjugate(a.z)
+				a.x.Conjugate(),
+				a.y.Conjugate(),
+				a.z.Conjugate()
 			);
 			return this.x * a1.x + this.y * a1.y + this.z * a1.z;
 		}

@@ -123,11 +123,6 @@ namespace TmatArt.Numeric.Mathematics
 			}
 		}
 
-		public Complex Conjugate (Complex arg)
-		{
-			return new Complex(arg.re, -arg.im);
-		}
-
 		private double Argument (Complex arg, double norm)
 		{
 			double phi  = 0;
