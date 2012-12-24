@@ -62,7 +62,7 @@ namespace TmatArt.Numeric.Mathematics
 
 		public Complex Acos (Complex arg)
 		{
-			if (arg.im == 0) {
+			if (arg.im == 0 && System.Math.Abs(arg.re) <= 1) {
 				return System.Math.Acos(arg.re);
 			} else {
 				return -Complex.AIM * this.Log(arg + Complex.AIM * this.Sqrt(1 - arg*arg));
@@ -71,7 +71,7 @@ namespace TmatArt.Numeric.Mathematics
 		
 		public Complex Asin (Complex arg)
 		{
-			if (arg.im == 0) {
+			if (arg.im == 0 && System.Math.Abs(arg.re) <= 1) {
 				return System.Math.Asin(arg.re);
 			} else {
 				return -Complex.AIM * this.Log(this.Sqrt(1 - arg*arg) + Complex.AIM * arg);
