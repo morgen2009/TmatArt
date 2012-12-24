@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tmatrix", "Tmatrix\Tmatrix.csproj", "{0AF63EA8-112C-4C6E-89E6-1EDCAB831A3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tmatrix.Tests\Tests.csproj", "{57294326-343B-4D60-BE68-3AEBB1752D67}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{57294326-343B-4D60-BE68-3AEBB1752D67}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Examples", "Examples\Examples.csproj", "{5D776DC8-AF89-4B9D-A0A9-30BAB493C51F}"
 EndProject
