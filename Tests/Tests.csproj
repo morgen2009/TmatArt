@@ -47,10 +47,10 @@
     <Compile Include="Scattering\Field.cs" />
     <Compile Include="Scattering\Fresnel.cs" />
     <Compile Include="Numeric\Mathematics\Complex.cs" />
-    <Compile Include="Numeric\Mathematics\ComplexFixtures.cs" />
     <Compile Include="Numeric\Mathematics\ComplexHelper.cs" />
     <Compile Include="Geometry\Vector3cHelper.cs" />
     <Compile Include="Geometry\Vector3dHelper.cs" />
+    <Compile Include="Numeric\Mathematics\MathC.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

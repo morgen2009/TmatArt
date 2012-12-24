@@ -1,109 +1,154 @@
 using System;
 using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace TmatArt.Numeric.Mathematics
 {
 	[TestFixture()]
-	public class ComplexTest
+	public class MathCTest
 	{
 		const double EqualityThreshold = 1E-10;
+		const double deg2rad = System.Math.PI / 180;
+		const double rad2deg = 180 / System.Math.PI;
 
-		[Test()]
-		public void Construct ()
+		public enum Function { Sin, Cos, Tan, Exp, Log, Acos, Asin, Atan, Sqrt, Pow };
+		private Dictionary<Function, Func<Complex, Complex>> cmplxFunc;
+		private Dictionary<Function, Func<double, double>> realFunc;
+		private Dictionary<Function, Function> inverseFunc;
+
+		public MathCTest()
 		{
-			Complex x = new Complex(1,3);
-			Assert.That(x, new ComplexConstraint(new Complex(1, 3)));
+			cmplxFunc = new Dictionary<Function, Func<Complex, Complex>>();
+			cmplxFunc.Add(Function.Cos, Complex.Math.Cos);
+			cmplxFunc.Add(Function.Sin, Complex.Math.Sin);
+			cmplxFunc.Add(Function.Tan, Complex.Math.Tan);
+			cmplxFunc.Add(Function.Acos,Complex.Math.Acos);
+			cmplxFunc.Add(Function.Asin,Complex.Math.Asin);
+			cmplxFunc.Add(Function.Atan,Complex.Math.Atan);
+			cmplxFunc.Add(Function.Exp, Complex.Math.Exp);
+			cmplxFunc.Add(Function.Log, Complex.Math.Log);
+			cmplxFunc.Add(Function.Sqrt,Complex.Math.Sqrt);
+
+			realFunc  = new Dictionary<Function, Func<double, double>>();
+			realFunc.Add(Function.Cos, System.Math.Cos);
+			realFunc.Add(Function.Sin, System.Math.Sin);
+			realFunc.Add(Function.Tan, System.Math.Tan);
+			realFunc.Add(Function.Acos,System.Math.Acos);
+			realFunc.Add(Function.Asin,System.Math.Asin);
+			realFunc.Add(Function.Atan,System.Math.Atan);
+			realFunc.Add(Function.Exp, System.Math.Exp);
+			realFunc.Add(Function.Log, System.Math.Log);
+			realFunc.Add(Function.Sqrt,System.Math.Sqrt);
+
+			inverseFunc = new Dictionary<Function, Function>();
+			inverseFunc.Add(Function.Cos, Function.Acos);
+			inverseFunc.Add(Function.Sin, Function.Asin);
+			inverseFunc.Add(Function.Tan, Function.Atan);
+			inverseFunc.Add(Function.Exp, Function.Log);
+			inverseFunc.Add(Function.Pow, Function.Sqrt);
 		}
 
-		[Test, TestCaseSource(typeof(ComplexFixtures), "BinaryOperations")]
-		public void Binary (Complex a, Complex b, ComplexFixtures.Operation op, Complex expected)
+		[Test]
+		public void Sin_Complex ()
 		{
-			Complex res = Complex.ZERO;
-
-			switch (op) {
-			case ComplexFixtures.Operation.Add:       res = a+b; break;
-			case ComplexFixtures.Operation.Substract: res = a-b; break;
-			case ComplexFixtures.Operation.Multiply:  res = a*b; break;
-			case ComplexFixtures.Operation.Divide:    res = a/b; break;
-			}
-
-			Assert.That(res, new ComplexConstraint(expected, ComplexTest.EqualityThreshold));
+			Complex expected = new Complex() {
+				re = System.Math.Sin(1E0) * (System.Math.E + 1E0/System.Math.E) / 2E0,
+				im = System.Math.Cos(1E0) * (System.Math.E - 1E0/System.Math.E) / 2E0
+			};
+			Assert.That(Complex.Math.Sin(new Complex(1,1)), new ComplexConstraint(expected));
+		}
+		
+		[Test]
+		public void Cos_Complex ()
+		{
+			Complex expected = new Complex() {
+				re =  System.Math.Cos(1E0) * (System.Math.E + 1E0/System.Math.E) / 2E0,
+				im = -System.Math.Sin(1E0) * (System.Math.E - 1E0/System.Math.E) / 2E0
+			};
+			Assert.That(Complex.Math.Cos(new Complex(1,1)), new ComplexConstraint(expected));
 		}
 
-		[Test, TestCaseSource(typeof(ComplexFixtures), "UnaryOperations")]
-		public void Unary (Complex a, ComplexFixtures.Operation op, Complex expected)
+		[Test]
+		public void Trigonom_Real ([Values(-15, 0, 15, 135, 220)]double arg, [Values(Function.Cos, Function.Sin, Function.Tan)] Function func)
 		{
-			Complex res = Complex.ZERO;
-
-			switch (op) {
-			case ComplexFixtures.Operation.Negate:    res = -a; break;
-			case ComplexFixtures.Operation.Inverse:   res = a.Inverse(); break;
-			case ComplexFixtures.Operation.Conjugate: res = Complex.Math.Conjugate(a); break;
-			case ComplexFixtures.Operation.Abs:       res = Complex.Math.Abs(a); break;
-			}
-
-			Assert.That(res, new ComplexConstraint(expected, ComplexTest.EqualityThreshold));
+			Complex actual   = this.cmplxFunc[func](arg * System.Math.PI / 180);
+			Complex expected = this.realFunc[func](arg * System.Math.PI / 180);
+			Assert.That(actual, new ComplexConstraint(expected));
+		}
+		
+		[Test]
+		public void Trigonom_Real_Inverse (
+			[Values(-15, 15, 135, 220)] double arg,
+			[Values(Function.Cos, Function.Sin, Function.Tan)] Function func)
+		{
+			Complex argument = arg * deg2rad;
+			Complex direct   = this.cmplxFunc[func](argument);
+			Complex inverse  = this.cmplxFunc[func](this.cmplxFunc[this.inverseFunc[func]](direct));
+			Assert.That(direct, new ComplexConstraint(inverse));
+		}
+		
+		[Test]
+		public void Trigonom_Complex_Inverse (
+			[Values(0.5, 1, 2)] double norm,
+			[Values(-15, 15, 135, 220)] double arg,
+			[Values(Function.Cos, Function.Sin, Function.Tan)] Function func)
+		{
+			Complex argument = Complex.Euler(norm, arg * deg2rad);
+			Complex direct   = this.cmplxFunc[func](argument);
+			Complex inverse  = this.cmplxFunc[func](this.cmplxFunc[this.inverseFunc[func]](direct));
+			Assert.That(direct, new ComplexConstraint(inverse));
 		}
 
-		[Test, TestCaseSource(typeof(ComplexFixtures), "MathFunctions")]
-		public void Math (Complex a, ComplexFixtures.Function op, Complex expected)
+		[Test]
+		public void Log_Real ([Values(1, 2)]double arg, [Values(Function.Log, Function.Exp)] Function func)
 		{
-			Complex res = Complex.ZERO;
-			
-			switch (op) {
-			case ComplexFixtures.Function.Sin: res = Complex.Math.Sin(a); break;
-			case ComplexFixtures.Function.Cos: res = Complex.Math.Cos(a); break;
-			case ComplexFixtures.Function.Tan: res = Complex.Math.Tan(a); break;
-			case ComplexFixtures.Function.Exp: res = Complex.Math.Exp(a); break;
-			case ComplexFixtures.Function.Log: res = Complex.Math.Log(a); break;
-			}
-			
-			Assert.That(res, new ComplexConstraint(expected, ComplexTest.EqualityThreshold));
+			Assume.That( arg > 0 );
+			Complex actual   = this.cmplxFunc[func](arg);
+			Complex expected = this.realFunc[func](arg);
+			Assert.That(actual, new ComplexConstraint(expected));
 		}
-
-		[Test()]
-		public void Aim ()
+		
+		[Test]
+		public void Log_Real_Inverse (
+			[Values(0.66, 1, 2)] double norm,
+			[Values(-15, 15, 135, 220)] double arg,
+			[Values(Function.Exp)] Function func)
 		{
-			/* degrees of imaginary identity */
-			Assert.That(Complex.Math.Aim(4), new ComplexConstraint(Complex.ONE, ComplexTest.EqualityThreshold));
-			Assert.That(Complex.Math.Aim(1), new ComplexConstraint(Complex.AIM, ComplexTest.EqualityThreshold));
+			Complex argument = Complex.Euler(norm, arg * deg2rad);
+			Complex direct   = this.cmplxFunc[func](argument);
+			Complex inverse  = this.cmplxFunc[func](this.cmplxFunc[this.inverseFunc[func]](direct));
+			Assert.That(direct, new ComplexConstraint(inverse));
 		}
-
-		[Test, TestCaseSource(typeof(ComplexFixtures), "SqrtCases")]
-		public void Sqrt (double re, double im)
+		
+		[Test]
+		public void Pow_Complex (
+			[Values(0.66, 1, 2)] double norm,
+			[Values(-15, 15, 135, 220)] double arg)
 		{
-			Complex r = new Complex(re, im);
-			Complex s = Complex.Math.Sqrt(r);
-			Assert.That(s*s, new ComplexConstraint(r, ComplexTest.EqualityThreshold));
+			Complex argument = Complex.Euler(norm, arg * deg2rad);
+			Complex expected = argument * argument;
+			Complex actual   = Complex.Math.Pow(argument, 2);;
+			Assert.That(actual, new ComplexConstraint(expected));
 		}
-
-		[Test, TestCaseSource(typeof(ComplexFixtures), "SqrtCases")]
-		public void Pow (double re, double im)
+		
+		[Test]
+		public void Sqrt_Complex (
+			[Values(0.66, 1, 2)] double norm,
+			[Values(-15, 15, 135, 220)] double arg)
 		{
-			Complex r = new Complex(re, im);
-			Complex s = Complex.Math.Pow(r, 2);
-			Assert.That(s, new ComplexConstraint(r*r, ComplexTest.EqualityThreshold));
+			Complex argument = Complex.Euler(norm, arg * deg2rad);
+			Complex expected = argument;
+			Complex actual   = Complex.Math.Sqrt(argument);
+			Assert.That(actual*actual, new ComplexConstraint(expected));
 		}
-	}
-
-	public static class AssertComplexExtension
-	{
-		public static void AreEqual (Complex expected, Complex actual, double delta, String message)
+		
+		[Test]
+		public void Abs ()
 		{
-			Assert.AreEqual(expected.re, actual.re, delta, message + "[real]");
-			Assert.AreEqual(expected.im, actual.im, delta, message + "[imaginary]");
-		}
-
-		public static void AreEqual (Complex expected, Complex actual, double delta)
-		{
-			Assert.AreEqual(expected.re, actual.re, delta, "real");
-			Assert.AreEqual(expected.im, actual.im, delta, "imaginary");
-		}
-
-		public static void print(this Complex number)
-		{
-			Console.WriteLine(String.Format("Complex number: {0}+j{1}", number.re, number.im));
+			Complex argument = new Complex(1.1, 2.3);
+			Complex expected = System.Math.Sqrt(6.5);
+			Complex actual   = Complex.Math.Abs(argument);
+			Assert.That(actual, new ComplexConstraint(expected));
 		}
 	}
 }
-
