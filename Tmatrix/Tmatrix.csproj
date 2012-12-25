@@ -86,7 +86,6 @@
     <Compile Include="Scattering\Field\GaussBeam.cs" />
     <Compile Include="Geometry\Region\IRegion.cs" />
     <Compile Include="Geometry\Region\Halfspace.cs" />
-    <Compile Include="Scattering\WaveLength.cs" />
     <Compile Include="Scattering\Field\Field.cs" />
     <Compile Include="Scattering\Field\Perspective.cs" />
     <Compile Include="Scattering\Field\Superposition.cs" />
@@ -106,6 +105,8 @@
     <Compile Include="Geometry\Region\Expression.cs" />
     <Compile Include="Geometry\Region\Layer.cs" />
     <Compile Include="Geometry\IRotator.cs" />
+    <Compile Include="Scattering\Unit\IUnit.cs" />
+    <Compile Include="Scattering\WaveLength.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -116,5 +117,6 @@
     <Folder Include="Scattering\Field\" />
     <Folder Include="Geometry\Region\" />
     <Folder Include="Scattering\Field\Operation\" />
+    <Folder Include="Scattering\Unit\" />
   </ItemGroup>
 </Project>

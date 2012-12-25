@@ -5,12 +5,27 @@ namespace TmatArt.Scattering
 	/// <summary>
 	/// Length of the wave in the electromagnetic field
 	/// </summary>
-	public class WaveLength
+	public struct WaveLength : IUnit<WaveLength, WaveLength.Unit>
 	{
 		/// <summary>
-		/// Physical units for the wavelength
+		/// Set of possible units
 		/// </summary>
 		public enum Unit {NM, MICRON, EV};
+
+		/// <summary>
+		/// Default unit
+		/// </summary>
+		public const Unit Default = Unit.NM;
+
+		/// <summary>
+		/// Wavelength value
+		/// </summary>
+		public double length;
+
+		/// <summary>
+		/// Physical unit in whicht the value is defined
+		/// </summary>
+		public Unit unit;
 
 		/// <summary>
 		/// Physical constants
@@ -19,60 +34,57 @@ namespace TmatArt.Scattering
 		const double C_VELOCITY  = 2.997924580e8;  // [m/s]
 		const double E_CHARGE    = 1.60217733e-19; // [1 ev = 1.602e-19 J]
 
-		public double value;
-		public Unit unit;
-
 		/// <summary>
-		/// Initializes a new instance of the <see cref="TmatArt.Scattering.WaveLength"/> class.
+		/// Initialize new WaveLength instance
 		/// </summary>
-		/// <param name="value">Wavelength value.</param>
-		/// <param name="unit">Units.</param>
-		public WaveLength (double value, Unit unit = Unit.NM)
+		/// <param name="length">WaveLength value.</param>
+		/// <param name="unit">Unit, in which the value is defined.</param>
+		public WaveLength(double length, Unit unit = WaveLength.Default)
 		{
-			this.value = value;
-			this.unit  = unit;
+			this.length = length;
+			this.unit   = unit;
 		}
 
-		/// <summary>
-		/// Return wavelength value
-		/// </summary>
-		public double Length()
+		/// <see cref="WaveLength" />
+		public static WaveLength Value(double length, Unit unit = WaveLength.Default)
 		{
-			return this.value;
+			return new WaveLength(length, unit);
 		}
-		
+
 		/// <summary>
-		/// Return wavelength value in the specified units
+		/// Conversion to double
 		/// </summary>
-		public double Length(Unit unit)
+		public static implicit operator double(WaveLength wave)
 		{
-			return this.Rescale(this.value, this.unit, unit);
+			return wave.length;
 		}
-		
+
 		/// <summary>
-		/// Recompute wavelength value into given units
+		/// Recompute wavelength into specified unit
 		/// </summary>
-		private double Rescale(double value, Unit unitOld, Unit unitNew)
+		/// <param name="unit">Unit.</param>
+		public WaveLength In(WaveLength.Unit unit)
 		{
-			if (unitOld == unitNew) {
-				return value;
+			if (this.unit == unit) {
+				return this;
 			}
-
-			// value [old] -> value [nm]
-			switch (unitOld) {
-			case Unit.MICRON : value *= 1000; break;
-			case Unit.EV     : value = WaveLength.C_VELOCITY * WaveLength.H_PLANK / (value * WaveLength.E_CHARGE * 1E-9); break;
+			
+			// value [old] -> default
+			switch (this.unit) {
+			case Unit.MICRON : length *= 1000; break;
+			case Unit.EV     : length = WaveLength.C_VELOCITY * WaveLength.H_PLANK / (length * WaveLength.E_CHARGE * 1E-9); break;
 			default : break;
 			}
 			
-			// value [nm] -> value [new]
-			switch (unitNew) {
-			case Unit.MICRON : value /= 1000; break;
-			case Unit.EV     : value = WaveLength.C_VELOCITY * WaveLength.H_PLANK / (value * WaveLength.E_CHARGE * 1E-9); break;
+			// default -> value [new]
+			switch (unit) {
+			case Unit.MICRON : length /= 1000; break;
+			case Unit.EV     : length = WaveLength.C_VELOCITY * WaveLength.H_PLANK / (length * WaveLength.E_CHARGE * 1E-9); break;
 			default : break;
 			}
-			
-			return value;
+
+			this.unit = unit;
+			return this;
 		}
 	}
 }

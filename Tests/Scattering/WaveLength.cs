@@ -13,10 +13,10 @@ namespace TmatArt.Scattering
 			WaveLength wave;
 
 			wave = new WaveLength(532);
-			Assert.AreEqual(wave.Length()/1000, wave.Length(WaveLength.Unit.MICRON), "NM->MICRON");
+			Assert.AreEqual(wave.length/1000, wave.In(WaveLength.Unit.MICRON).length, "NM->MICRON");
 
 			wave = new WaveLength(532, WaveLength.Unit.MICRON);
-			Assert.AreEqual(wave.Length()*1000, wave.Length(WaveLength.Unit.NM), "MICRON->NM");
+			Assert.AreEqual(wave.length*1000, (double)wave.In(WaveLength.Unit.NM), "MICRON->NM");
 		}
 
 		[Test()]
@@ -24,11 +24,11 @@ namespace TmatArt.Scattering
 		{
 			WaveLength wave;
 
-			wave = new WaveLength(532);
-			Assert.AreEqual(2.33, wave.Length(WaveLength.Unit.EV), 1E-3, "NM->EV");
+			wave = WaveLength.Value(532);
+			Assert.AreEqual(2.33, wave.In(WaveLength.Unit.EV), 1E-3, "NM->EV");
 			
-			wave = new WaveLength(1, WaveLength.Unit.EV);
-			Assert.AreEqual(1240, wave.Length(WaveLength.Unit.NM), 1, "EV->NM");
+			wave = WaveLength.Value(1, WaveLength.Unit.EV);
+			Assert.AreEqual(1240, wave.In(WaveLength.Unit.NM), 1, "EV->NM");
 		}
 	}
 }

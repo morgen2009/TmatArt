@@ -22,7 +22,7 @@ namespace TmatArt.Scattering.Field.Operation
 			Fresnel.Coefficients coef = Fresnel.Compute(this.field.beta, this.field.medium.index, mediumExt.index);
 			// TODO theta_reflected = pi - theta seems be wrong for absorbing media
 			PlaneWave res = new PlaneWave(System.Math.PI - field.beta, this.field.phi);
-			double wavenumber = 2 * System.Math.PI / field.wave.value;
+			double wavenumber = 2 * System.Math.PI / field.wave.length;
 			Complex phase1 = Complex.AIM * Complex.Math.Cos(field.beta) * field.medium.index * region.z * wavenumber;
 			Complex phase2 = phase1;
 			res.ex     = Complex.Math.Exp(phase2) * coef.rp * Complex.Math.Exp(phase1) * this.field.ex;
@@ -38,7 +38,7 @@ namespace TmatArt.Scattering.Field.Operation
 		{
 			Fresnel.Coefficients coef = Fresnel.Compute(this.field.beta, this.field.medium.index, mediumExt.index);
 			PlaneWave res = new PlaneWave(coef.thetaOut, this.field.phi, PlaneWave.Polarization.HORIZONTAL);
-			double wavenumber = 2 * System.Math.PI / field.wave.value;
+			double wavenumber = 2 * System.Math.PI / field.wave.length;
 			Complex phase1 = Complex.AIM * Complex.Math.Cos(field.beta) * field.medium.index * region.z * wavenumber;
 			Complex phase2 = -Complex.AIM * Complex.Math.Cos(res.beta) * mediumExt.index * region.z * wavenumber;
 			res.ex     = Complex.Math.Exp(phase2) * coef.tp * Complex.Math.Exp(phase1) * this.field.ex;

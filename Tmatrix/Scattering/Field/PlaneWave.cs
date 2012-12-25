@@ -38,7 +38,7 @@ namespace TmatArt.Scattering.Field
 		{
 			Vector3c res = r.Rotate(Axis3Name.Z, phi).Rotate(Axis3Name.Y, beta); // conjugate?
 			//Euler e = new Euler(phi, beta.re, 0);
-			Complex wavenumber = (2*System.Math.PI / this.wave.Length()) * this.medium.index;
+			Complex wavenumber = (2*System.Math.PI / this.wave.length) * this.medium.index;
 			Complex phase = Complex.AIM * wavenumber * res.z;
 			Vector3c v = new Vector3c(this.ex, this.ey, 0) * Complex.Math.Exp(phase) * this.norm;
 			return v.Rotate(Axis3Name.Y, -beta).Rotate(Axis3Name.Z, -phi);
