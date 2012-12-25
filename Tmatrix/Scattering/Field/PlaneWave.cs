@@ -12,14 +12,15 @@ namespace TmatArt.Scattering.Field
 	/// </summary>
 	public class PlaneWave : Field
 	{
-		public double beta, phi;
+		public Complex beta;
+		public double phi;
 		public Complex ex, ey;
 		public double  norm;
 		private static ServiceContainer<PlaneWave> container;
 
 		public enum Polarization {VERTICAL, HORIZONTAL, CIRCULAR_R, CIRCULAR_L};
 
-		public PlaneWave(double beta, double phi, Polarization polarization = Polarization.VERTICAL)
+		public PlaneWave(Complex beta, double phi, Polarization polarization = Polarization.VERTICAL)
 		{
 			this.beta  = beta;
 			this.phi   = phi;
@@ -35,17 +36,18 @@ namespace TmatArt.Scattering.Field
 
 		public override Vector3c NearE (Vector3d r)
 		{
-			Euler e = new Euler(phi, beta, 0);
+			Vector3c res = r.RotateZ(phi).RotateY(beta); // conjugate?
+			//Euler e = new Euler(phi, beta.re, 0);
 			Complex wavenumber = (2*System.Math.PI / this.wave.Length()) * this.medium.index;
-			Complex phase = Complex.AIM * wavenumber * r.Rotate(e).z;
+			Complex phase = Complex.AIM * wavenumber * res.z;
 			Vector3c v = new Vector3c(this.ex, this.ey, 0) * Complex.Math.Exp(phase) * this.norm;
-			return v.Rotate(-e);
+			return v.RotateY(-beta).RotateZ(-phi);
 		}
 
 		public override Vector3c FarE (Euler e)
 		{
 			throw new System.NotImplementedException ();
-		}
+		}                             
 
 		public override T Operation<T>()
 		{

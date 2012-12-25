@@ -14,7 +14,7 @@ namespace TmatArt.Scattering
 			// arrange
 			double deg = System.Math.PI / 180;
 			Fresnel.Coefficients c = Fresnel.Compute(betaIn*deg, mediumIn, mediumOut);
-			Assume.That(c.thetaOut.im == 0, "Total internal reflection");
+			Assume.That(c.thetaOut.im == 0, String.Format("Total internal reflection, Im(theta)={0}", c.thetaOut.im));
 
 			// assert
 			double reflectance   = System.Math.Pow(Complex.Math.Abs(c.rp),2) + System.Math.Pow(Complex.Math.Abs(c.rs),2);

@@ -32,7 +32,7 @@ namespace TmatArt.Scattering.Field
 			
 			// act
 			Vector3d p0 = new Vector3d(0, 0, 0);
-			Euler e = new Euler(field.phi, field.beta, 0);
+			Euler e = new Euler(field.phi, field.beta.re, 0);
 			Vector3d p1 = new Vector3d(0, 0, 1).Rotate(-e) / field.medium.index.re;
 			Vector3c e0 = field.NearE(p0);
 			Vector3c e1 = field.NearE(p1);
@@ -54,7 +54,7 @@ namespace TmatArt.Scattering.Field
 			PlaneWave transmit = field.Operation<IReflectOperation>().Transmit(new Halfspace(z0), medium2) as PlaneWave;
 			
 			// assert
-			Assert.That(System.Math.Sin(transmit.beta)*transmit.medium.index, new ComplexConstraint(System.Math.Sin(field.beta)*field.medium.index));
+			Assert.That(System.Math.Sin(transmit.beta.re)*transmit.medium.index, new ComplexConstraint(System.Math.Sin(field.beta.re)*field.medium.index));
 		}
 
 		[Test]public void ContinousEnergy ([Values(0, 1000)]double z, [Values(45, 60)]double beta, [Values(0,1,2,3)]PlaneWave.Polarization pol)
@@ -74,7 +74,7 @@ namespace TmatArt.Scattering.Field
 			Vector3c f1 = field.NearE(point);
 			Vector3c fr = reflect.NearE(point);
 			Vector3c ft = transmit.NearE(point);
-			double norm = Math.Cos(transmit.beta) / Math.Cos(field.beta) * transmit.medium.index.re / field.medium.index.re;
+			double norm = Math.Cos(transmit.beta.re) / Math.Cos(field.beta.re) * transmit.medium.index.re / field.medium.index.re;
 
 			Complex before = f1*f1;
 			Complex after  = fr*fr + ft*ft*norm;
@@ -84,13 +84,18 @@ namespace TmatArt.Scattering.Field
 			Assert.That(before, new ComplexConstraint(after));
 		}
 
-		[Test]public void ContinousTangentialComponent ([Values(0, -1000, 1000)]double z, [Values(45, 60)]double beta, [Values(0,1,2,3)]PlaneWave.Polarization pol)
+		[Test]public void TangentialComponents (
+			[Values(0, 1)] double mr_im,
+			[Values(0, 1000)] double z,
+			[Values(45, 60)] double beta,
+			[Values(0,1,2,3)] PlaneWave.Polarization pol)
 		{
+			// TODO Further validations are needed (when angle is complex and evanescent wave and tow absorbing media)
 			// arrange
 			PlaneWave field = new PlaneWave(beta*deg, 0, pol);
 			field.wave   = new WaveLength(628.3);
 			field.medium = new Isotrop(1.0);
-			Isotrop medium2 = new Isotrop(1.5);
+			Isotrop medium2 = new Isotrop(new Complex(1.5, 0.01*mr_im));
 			double z0 = z;
 			
 			// act
@@ -107,11 +112,10 @@ namespace TmatArt.Scattering.Field
 
 			Console.WriteLine((f1+fr).info());
 			Console.WriteLine(ft.info());
-			Console.WriteLine(((f1.y+fr.y)/ft.y).info());
+			Console.WriteLine(((f1.y.im+fr.y.im)/ft.y.im));
 
 			Console.WriteLine(String.Format("{0} : {1} : {2}", f1.Length().re, fr.Length().re, ft.Length().re));
-			Assert.AreEqual((f1 + fr - ft).Length().re, 0, 1E-4);
-			//Assert.Fail ();
+			Assert.That(f1+fr, new Vector3cConstraint(ft, 1E-4));
 		}
 	}
 }

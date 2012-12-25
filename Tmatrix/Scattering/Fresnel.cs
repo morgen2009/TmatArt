@@ -29,6 +29,9 @@ namespace TmatArt.Scattering
 			Complex cosIn  = Complex.Math.Cos(res.thetaIn);
 			Complex cosOut = Complex.Math.Cos(res.thetaOut);
 
+			Console.WriteLine("{0}  :  {1}", res.thetaOut.re, res.thetaOut.im);
+			Console.WriteLine("{0}  :  {1}", cosOut.re, cosOut.im);
+
 			// coefficients for reflected wave
 			res.rp = (indexOut * cosIn - indexIn * cosOut) / (indexIn * cosOut + indexOut * cosIn);
 			res.rs = (indexIn * cosIn - indexOut * cosOut) / (indexIn * cosIn + indexOut * cosOut);

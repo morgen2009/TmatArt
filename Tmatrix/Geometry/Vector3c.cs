@@ -179,6 +179,42 @@ namespace TmatArt.Geometry
 				this.z.im = value.z;
 			}
 		}
+
+		public Vector3c RotateX (Complex angle)
+		{
+			Complex cos = Complex.Math.Cos(angle);
+			Complex sin = Complex.Math.Sin(angle);
+			
+			return new Vector3c(
+				this.x,
+				this.y * cos + this.z * sin,
+				-this.y * sin + this.z * cos
+				);
+		}
+		
+		public Vector3c RotateY (Complex angle)
+		{
+			Complex cos = Complex.Math.Cos(angle);
+			Complex sin = Complex.Math.Sin(angle);
+			
+			return new Vector3c(
+				this.x * cos - this.z * sin,
+				this.y,
+				this.x * sin + this.z * cos
+				);
+		}
+		
+		public Vector3c RotateZ (Complex angle)
+		{
+			Complex cos = Complex.Math.Cos(angle);
+			Complex sin = Complex.Math.Sin(angle);
+			
+			return new Vector3c(
+				this.x * cos + this.y * sin,
+				-this.x * sin + this.y * cos,
+				this.z
+				);
+		}
 	}
 }
 
