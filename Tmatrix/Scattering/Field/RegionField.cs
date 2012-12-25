@@ -42,9 +42,9 @@ namespace TmatArt.Scattering.Field
 		}
 
 		/// <see cref="TmatArt.Scattering.Operation<T>"/>
-		public override T Operation<T> ()
+		public override T Resolve<T> ()
 		{
-			return field.Operation<T>();
+			return field.Resolve<T>();
 		}
 	}
 }

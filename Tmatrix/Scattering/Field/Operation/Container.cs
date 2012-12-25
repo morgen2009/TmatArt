@@ -7,7 +7,7 @@ namespace TmatArt.Scattering.Field.Operation
 	/// IoC container for IFieldOperation services
 	/// </summary>
 	/// <param name="T">Field class</param>
-	public class ServiceContainer<T>
+	public class Container<T>
 	{
 		/// <summary>
 		/// Relation between "IFieldOperation interface" and "class name"
@@ -17,7 +17,7 @@ namespace TmatArt.Scattering.Field.Operation
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public ServiceContainer ()
+		public Container()
 		{
 			this.service = new Dictionary<Type, Type>();
 		}
@@ -56,7 +56,7 @@ namespace TmatArt.Scattering.Field.Operation
 		{
 			Type resolvedType = this.ResolvedType(type);
 			if (resolvedType == null) {
-				throw new Operation.NotFoundMethod (type, this.GetType());
+				throw new Operation.NotFoundException (type, this.GetType());
 			}
 			return Activator.CreateInstance(resolvedType);
 		}

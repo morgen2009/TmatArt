@@ -96,10 +96,7 @@
     <Compile Include="Scattering\Field\RegionField.cs" />
     <Compile Include="Scattering\Field\Operation\IReflectOperation.cs" />
     <Compile Include="Scattering\Field\Operation\IExpansionOperation.cs" />
-    <Compile Include="Scattering\Field\Operation\NotFoundMethod.cs" />
-    <Compile Include="Scattering\Field\Operation\ServiceContainer.cs" />
     <Compile Include="Scattering\Field\Operation\IFieldOperation.cs" />
-    <Compile Include="Scattering\Field\Operation\PlaneWaveService.cs" />
     <Compile Include="Geometry\EulerExtension.cs" />
     <Compile Include="Scattering\Fresnel.cs" />
     <Compile Include="Geometry\Region\Expression.cs" />
@@ -107,6 +104,9 @@
     <Compile Include="Geometry\IRotator.cs" />
     <Compile Include="Scattering\Unit\IUnit.cs" />
     <Compile Include="Scattering\WaveLength.cs" />
+    <Compile Include="Scattering\Field\Operation\Container.cs" />
+    <Compile Include="Scattering\Field\Operation\NotFoundException.cs" />
+    <Compile Include="Scattering\Field\Impl\PlaneWaveImpl.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -118,5 +118,6 @@
     <Folder Include="Geometry\Region\" />
     <Folder Include="Scattering\Field\Operation\" />
     <Folder Include="Scattering\Unit\" />
+    <Folder Include="Scattering\Field\Impl\" />
   </ItemGroup>
 </Project>

@@ -1,16 +1,15 @@
 using System;
 using TmatArt.Geometry.Region;
 using TmatArt.Numeric.Mathematics;
+using TmatArt.Scattering.Field.Operation;
 
-namespace TmatArt.Scattering.Field.Operation
+namespace TmatArt.Scattering.Field.Impl
 {
-	public class PlaneWaveService: IReflectOperation, IExpansionOperation, IFieldOperation<PlaneWave>
+	public struct PlaneWaveImpl: IReflectOperation, IExpansionOperation, IFieldOperation<PlaneWave>
 	{
-		public PlaneWaveService () { }
-
 		PlaneWave field;
 
-		/// <see cref="IFieldOperation"/> 
+		/// <see cref="IFieldOperation.SetField"/> 
 		public void SetField(PlaneWave field)
 		{
 			this.field = field;
@@ -43,7 +42,7 @@ namespace TmatArt.Scattering.Field.Operation
 			Complex phase2 = -Complex.AIM * Complex.Math.Cos(res.beta) * mediumExt.index * region.z * wavenumber;
 			res.ex     = Complex.Math.Exp(phase2) * coef.tp * Complex.Math.Exp(phase1) * this.field.ex;
 			res.ey     = Complex.Math.Exp(phase2) * coef.ts * Complex.Math.Exp(phase1) * this.field.ey;
-			res.norm   = 1; //System.Math.Sqrt(coef.area);
+			res.norm   = 1;
 			res.wave   = this.field.wave;
 			res.medium = mediumExt;
 			return res;

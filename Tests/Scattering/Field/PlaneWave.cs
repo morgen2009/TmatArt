@@ -51,7 +51,7 @@ namespace TmatArt.Scattering.Field
 			double z0 = z;
 			
 			// act
-			PlaneWave transmit = field.Operation<IReflectOperation>().Transmit(new Halfspace(z0), medium2) as PlaneWave;
+			PlaneWave transmit = field.Resolve<IReflectOperation>().Transmit(new Halfspace(z0), medium2) as PlaneWave;
 			
 			// assert
 			Assert.That(System.Math.Sin(transmit.beta.re)*transmit.medium.index, new ComplexConstraint(System.Math.Sin(field.beta.re)*field.medium.index));
@@ -67,8 +67,8 @@ namespace TmatArt.Scattering.Field
 			double z0 = z;
 
 			// act
-			PlaneWave reflect  = field.Operation<IReflectOperation>().Reflect(new Halfspace(z0), medium2) as PlaneWave;
-			PlaneWave transmit = field.Operation<IReflectOperation>().Transmit(new Halfspace(z0), medium2) as PlaneWave;
+			PlaneWave reflect  = field.Resolve<IReflectOperation>().Reflect(new Halfspace(z0), medium2) as PlaneWave;
+			PlaneWave transmit = field.Resolve<IReflectOperation>().Transmit(new Halfspace(z0), medium2) as PlaneWave;
 
 			Vector3d point = new Vector3d(0, 0, z0);
 			Vector3c f1 = field.NearE(point);
@@ -99,8 +99,8 @@ namespace TmatArt.Scattering.Field
 			double z0 = z;
 			
 			// act
-			PlaneWave reflect  = field.Operation<IReflectOperation>().Reflect(new Halfspace(z0), medium2) as PlaneWave;
-			PlaneWave transmit = field.Operation<IReflectOperation>().Transmit(new Halfspace(z0), medium2) as PlaneWave;
+			PlaneWave reflect  = field.Resolve<IReflectOperation>().Reflect(new Halfspace(z0), medium2) as PlaneWave;
+			PlaneWave transmit = field.Resolve<IReflectOperation>().Transmit(new Halfspace(z0), medium2) as PlaneWave;
 			
 			// assert
 			Vector3d point = new Vector3d(0, 0, z0);

@@ -37,7 +37,7 @@ namespace TmatArt.Scattering.Field
 		/// Get instance implementing the given operation for the field
 		/// </summary>
 		/// <param name="T">IFieldOperation interface.</param>
-		public abstract T Operation<T>();
+		public abstract T Resolve<T>();
 	}
 }
 

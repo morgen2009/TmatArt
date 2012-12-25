@@ -4,6 +4,7 @@ using TmatArt.Numeric.Mathematics;
 using TmatArt.Geometry.Region;
 using TmatArt.Scattering.Medium;
 using TmatArt.Scattering.Field.Operation;
+using TmatArt.Scattering.Field.Impl;
 
 namespace TmatArt.Scattering.Field
 {
@@ -16,7 +17,7 @@ namespace TmatArt.Scattering.Field
 		public double phi;
 		public Complex ex, ey;
 		public double  norm;
-		private static ServiceContainer<PlaneWave> container;
+		private static Container<PlaneWave> container;
 
 		public enum Polarization {VERTICAL, HORIZONTAL, CIRCULAR_R, CIRCULAR_L};
 
@@ -49,13 +50,13 @@ namespace TmatArt.Scattering.Field
 			throw new System.NotImplementedException ();
 		}                             
 
-		public override T Operation<T>()
+		public override T Resolve<T>()
 		{
 			// collect classes implementing fields operations
 			if (PlaneWave.container == null) {
-				PlaneWave.container = new ServiceContainer<PlaneWave>();
-				PlaneWave.container.Register<IReflectOperation, Operation.PlaneWaveService>();
-				PlaneWave.container.Register<IExpansionOperation, Operation.PlaneWaveService>();
+				PlaneWave.container = new Container<PlaneWave>();
+				PlaneWave.container.Register<IReflectOperation, PlaneWaveImpl>();
+				PlaneWave.container.Register<IExpansionOperation, PlaneWaveImpl>();
 			}
 
 			// create object of the corresponding class for given operation
