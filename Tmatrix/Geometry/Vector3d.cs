@@ -6,7 +6,11 @@ namespace TmatArt.Geometry
 	/// <summary>
 	/// Vector with x, y, z real coordinates
 	/// </summary>
-	public struct Vector3d : IVector3x<Vector3d, double>
+	public struct Vector3d :
+		IHilbertSpace<Vector3d, double>,
+		IRingOperations<Vector3d>,
+		IRotatableAxis<Vector3d, Axis3Name, double>,
+		IRotatableAxis<Vector3c, Axis3Name, Complex>
 	{
 		public double x, y, z;
 
@@ -23,50 +27,55 @@ namespace TmatArt.Geometry
 			this.z = z;
 		}
 
-		/* implementation of IEqualityComparer */
+		/// <see cref="IEqualityComparer.Equals"/>
 		public bool Equals(Vector3d a, Vector3d b)
 		{
 			return a.x.Equals(b.x) && a.y.Equals(b.y) && a.z.Equals(b.z);
 		}
 
+		/// <see cref="IEqualityComparer.GetHashCode"/>
 		public int GetHashCode(Vector3d a)
 		{
 			return a.x.GetHashCode() + a.y.GetHashCode() + a.z.GetHashCode();
 		}
 
-		/* implementation of IGroupOperations */
+		/// <see cref="IGroupOperations.Add"/>
 		public Vector3d Add(Vector3d a)
 		{
 			return new Vector3d(this.x + a.x, this.y + a.y, this.z + a.z);
 		}
 
+		/// <see cref="IGroupOperations.Subtract"/>
 		public Vector3d Subtract(Vector3d a)
 		{
 			return new Vector3d(this.x - a.x, this.y - a.y, this.z - a.z);
 		}
 		
+		/// <see cref="IGroupOperations.Negate"/>
 		public Vector3d Negate()
 		{
 			return new Vector3d(-this.x, -this.y, -this.z);
 		}
 		
+		/// <see cref="IGroupOperations.Zero"/>
 		public Vector3d Zero()
 		{
 			return new Vector3d();
 		}
 
-		/* implementation of IVectorSpace */
+		/// <see cref="IVectorSpace.Negate"/>
 		public Vector3d Multiply(double a)
 		{
 			return new Vector3d(a * this.x, a * this.y, a * this.z);
 		}
 		
+		/// <see cref="IVectorSpace.Divide"/>
 		public Vector3d Divide(double a)
 		{
 			return new Vector3d(this.x / a, this.y / a, this.z / a);
 		}
 
-		/* implementation of IRingOperations */
+		/// <see cref="IRingOperations.Multiply"/>
 		public Vector3d Multiply(Vector3d a)
 		{
 			return new Vector3d(
@@ -76,54 +85,79 @@ namespace TmatArt.Geometry
 				);
 		}
 
-		/* implementation of IHilbertSpace */
+		/// <see cref="IHilbertSpace.Scalar"/>
 		public double Scalar(Vector3d a)
 		{
 			return this.x * a.x + this.y * a.y + this.z * a.z;
 		}
 		
+		/// <see cref="IHilbertSpace.Length"/>
 		public double Length()
 		{
 			return System.Math.Sqrt(this.Scalar(this));
 		}
 		
-		/* implementation of IVector3x */
-		public Vector3d RotateX (double angle)
+		/// <see cref="IRotatableAxis<Vector3d, Axis3Name, double>.Rotate"/>
+		public Vector3d Rotate(Axis3Name axis, double angle)
 		{
 			double cos = System.Math.Cos(angle);
 			double sin = System.Math.Sin(angle);
 			
-			return new Vector3d(
-				this.x,
-				this.y * cos + this.z * sin,
-				-this.y * sin + this.z * cos
-				);
+			switch (axis)
+			{
+			case Axis3Name.X :
+				return new Vector3d(
+					this.x,
+					this.y * cos + this.z * sin,
+					-this.y * sin + this.z * cos
+					);
+			case Axis3Name.Y :
+				return new Vector3d(
+					this.x * cos - this.z * sin,
+					this.y,
+					this.x * sin + this.z * cos
+					);
+			case Axis3Name.Z :
+				return new Vector3d(
+					this.x * cos + this.y * sin,
+					-this.x * sin + this.y * cos,
+					this.z
+					);
+			default : return this;
+			}
 		}
 		
-		public Vector3d RotateY (double angle)
+		/// <see cref="IRotatableAxis<Vector3c, Axis3Name, Complex>.Rotate"/>
+		public Vector3c Rotate(Axis3Name axis, Complex angle)
 		{
-			double cos = System.Math.Cos(angle);
-			double sin = System.Math.Sin(angle);
+			Complex cos = Complex.Math.Cos(angle);
+			Complex sin = Complex.Math.Sin(angle);
 			
-			return new Vector3d(
-				this.x * cos - this.z * sin,
-				this.y,
-				this.x * sin + this.z * cos
-				);
+			switch (axis)
+			{
+			case Axis3Name.X :
+				return new Vector3c(
+					this.x,
+					this.y * cos + this.z * sin,
+					-this.y * sin + this.z * cos
+					);
+			case Axis3Name.Y :
+				return new Vector3c(
+					this.x * cos - this.z * sin,
+					this.y,
+					this.x * sin + this.z * cos
+					);
+			case Axis3Name.Z :
+				return new Vector3c(
+					this.x * cos + this.y * sin,
+					-this.x * sin + this.y * cos,
+					this.z
+					);
+			default :
+				return new Vector3c(x, y, z);
+			}
 		}
 		
-		public Vector3d RotateZ (double angle)
-		{
-			double cos = System.Math.Cos(angle);
-			double sin = System.Math.Sin(angle);
-			
-			return new Vector3d(
-				this.x * cos + this.y * sin,
-				-this.x * sin + this.y * cos,
-				this.z
-				);
-		}
-
 		/* Static operations */
 		public static Vector3d operator + (Vector3d a, Vector3d b) { return a.Add(b); }
 		public static Vector3d operator - (Vector3d a, Vector3d b) { return a.Subtract(b); }
@@ -134,40 +168,24 @@ namespace TmatArt.Geometry
 		public static double operator * (Vector3d a, Vector3d b) { return a.Scalar(b);	}
 		public static Vector3d operator ^ (Vector3d a, Vector3d b) { return a.Multiply(b); }
 
+		/* Explicit conversion to Vector3c */
+
+		/// <deprecated/>
 		public Vector3c RotateX (Complex angle)
 		{
-			Complex cos = Complex.Math.Cos(angle);
-			Complex sin = Complex.Math.Sin(angle);
-			
-			return new Vector3c(
-				this.x,
-				this.y * cos + this.z * sin,
-				-this.y * sin + this.z * cos
-				);
+			return Rotate(Axis3Name.X, angle);
 		}
 		
+		/// <deprecated/>
 		public Vector3c RotateY (Complex angle)
 		{
-			Complex cos = Complex.Math.Cos(angle);
-			Complex sin = Complex.Math.Sin(angle);
-			
-			return new Vector3c(
-				this.x * cos - this.z * sin,
-				this.y,
-				this.x * sin + this.z * cos
-				);
+			return Rotate(Axis3Name.Y, angle);
 		}
 		
+		/// <deprecated/>
 		public Vector3c RotateZ (Complex angle)
 		{
-			Complex cos = Complex.Math.Cos(angle);
-			Complex sin = Complex.Math.Sin(angle);
-			
-			return new Vector3c(
-				this.x * cos + this.y * sin,
-				-this.x * sin + this.y * cos,
-				this.z
-				);
+			return Rotate(Axis3Name.Z, angle);
 		}
 	}
 }

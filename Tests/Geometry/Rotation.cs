@@ -13,9 +13,9 @@ namespace TmatArt.Geometry
 			Vector3d v = new Vector3d(1, 0, 0);
 			double sqrt2 = System.Math.Sqrt(2) / 2;
 			
-			TestRotExtension.AreEqual(new Vector3d(1, 0, 0), v.RotateX(System.Math.PI / 4).debug(), "RotateX");
-			TestRotExtension.AreEqual(new Vector3d(sqrt2, 0, sqrt2), v.RotateY(System.Math.PI / 4).debug(), "RotateY");
-			TestRotExtension.AreEqual(new Vector3d(sqrt2, -sqrt2, 0), v.RotateZ(System.Math.PI / 4).debug(), "RotateZ");
+			TestRotExtension.AreEqual(new Vector3d(1, 0, 0), v.Rotate(Axis3Name.X, System.Math.PI / 4).debug(), "RotateX");
+			TestRotExtension.AreEqual(new Vector3d(sqrt2, 0, sqrt2), v.Rotate(Axis3Name.Y, System.Math.PI / 4).debug(), "RotateY");
+			TestRotExtension.AreEqual(new Vector3d(sqrt2, -sqrt2, 0), v.Rotate(Axis3Name.Z, System.Math.PI / 4).debug(), "RotateZ");
 		}
 
 		[Test, TestCaseSource(typeof(RotationFixtures), "Negate")]

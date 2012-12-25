@@ -6,7 +6,7 @@ namespace TmatArt.Geometry
 	/// <summary>
 	/// Euler rotation angles
 	/// </summary>
-	public struct Euler : IGroupOperations<Euler>
+	public struct Euler : IGroupOperations<Euler>, IRotator<Axis3Name, double>
 	{
 		/// <summary>
 		/// Euler anglea &alpha;, &beta;, &gamma
@@ -60,7 +60,7 @@ namespace TmatArt.Geometry
 			}
 
 			// gamma
-			e2 = e2.RotateZ(-alpha);
+			e2 = e2.Rotate(Axis3Name.Z, -alpha);
 			double gamma = System.Math.Acos(e2 * e2t);
 			if ((e2 ^ e3t) * e2t > 0) {
 				gamma = 2 * System.Math.PI - gamma;
@@ -132,23 +132,23 @@ namespace TmatArt.Geometry
 		/// <returns>The original vector in the rotated coordinate system</returns>
 		/// <param name="vector">Vector.</param>
 		/// <param name="euler">Euler angles.</param>
-		public T Rotate<T, Tbase>(T vector) where T: IVector3x<T, Tbase>
+		public T Rotate<T>(T vector) where T: IRotatableAxis<T, Axis3Name, double>
 		{
 			T r = vector;
 			
 			// rotate vector around Z axis by angle &alpha;
 			if (this.alpha != 0) {
-				r = r.RotateZ(this.alpha);
+				r = r.Rotate(Axis3Name.Z, this.alpha);
 			}
 			
 			// rotate vector around Y' axis by angle &beta;
 			if (this.beta != 0) {
-				r = r.RotateY(this.beta);
+				r = r.Rotate(Axis3Name.Y, this.beta);
 			}
 			
 			// rotate vector around Z'' axis by angle &gamma;
 			if (this.gamma != 0) {
-				r = r.RotateZ(this.gamma);
+				r = r.Rotate(Axis3Name.Z, this.gamma);
 			}
 			
 			return r;

@@ -7,12 +7,12 @@ namespace TmatArt.Geometry
 	{
 		public static Vector3d Rotate(this Vector3d vector, Euler euler)
 		{
-			return euler.Rotate<Vector3d, double>(vector);
+			return euler.Rotate(vector);
 		}
 
 		public static Vector3c Rotate(this Vector3c vector, Euler euler)
 		{
-			return euler.Rotate<Vector3c, Complex>(vector);
+			return euler.Rotate(vector);
 		}
 	}
 }
