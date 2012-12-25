@@ -167,26 +167,6 @@ namespace TmatArt.Geometry
 		public static Vector3d operator / (Vector3d a, double b) { return a.Divide(b); }
 		public static double operator * (Vector3d a, Vector3d b) { return a.Scalar(b);	}
 		public static Vector3d operator ^ (Vector3d a, Vector3d b) { return a.Multiply(b); }
-
-		/* Explicit conversion to Vector3c */
-
-		/// <deprecated/>
-		public Vector3c RotateX (Complex angle)
-		{
-			return Rotate(Axis3Name.X, angle);
-		}
-		
-		/// <deprecated/>
-		public Vector3c RotateY (Complex angle)
-		{
-			return Rotate(Axis3Name.Y, angle);
-		}
-		
-		/// <deprecated/>
-		public Vector3c RotateZ (Complex angle)
-		{
-			return Rotate(Axis3Name.Z, angle);
-		}
 	}
 }
 

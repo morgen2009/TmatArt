@@ -211,24 +211,6 @@ namespace TmatArt.Geometry
 				this.z.im = value.z;
 			}
 		}
-
-		/// <deprecated/>
-		public Vector3c RotateX (Complex angle)
-		{
-			return Rotate(Axis3Name.X, angle);
-		}
-		
-		/// <deprecated/>
-		public Vector3c RotateY (Complex angle)
-		{
-			return Rotate(Axis3Name.Y, angle);
-		}
-		
-		/// <deprecated/>
-		public Vector3c RotateZ (Complex angle)
-		{
-			return Rotate(Axis3Name.Z, angle);
-		}
 	}
 }
 
