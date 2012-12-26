@@ -27,7 +27,7 @@ namespace TmatArt.Scattering.Field.Operation
 		/// </summary>
 		/// <typeparam name="TI">Interface to be registered</typeparam>
 		/// <typeparam name="TC">Class implementing this interface</typeparam>
-		public void Register<Ti, Tc>() where Tc: Ti, IFieldOperation<T>
+		public void Register<Ti, Tc>() where Tc: Ti
 		{
 			this.service.Add(typeof(Ti), typeof(Tc));
 		}
@@ -47,18 +47,18 @@ namespace TmatArt.Scattering.Field.Operation
 		/// <typeparam name="Ti">IFieldOperation interface to be resolved</typeparam>
 		public Ti Resolve<Ti>(T field)
 		{
-			var obj = (Ti) Resolve(typeof(Ti));
-			(obj as IFieldOperation<T>).SetField(field);
+			var obj = (Ti) Resolve(typeof(Ti), field);
 			return obj;
 		}
 
-		private object Resolve(Type type)
+		private object Resolve(Type type, T field)
 		{
 			Type resolvedType = this.ResolvedType(type);
 			if (resolvedType == null) {
 				throw new Operation.NotFoundException (type, this.GetType());
 			}
-			return Activator.CreateInstance(resolvedType);
+
+			return Activator.CreateInstance(resolvedType, field);
 		}
 	}
 }

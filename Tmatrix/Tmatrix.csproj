@@ -96,7 +96,6 @@
     <Compile Include="Scattering\Field\RegionField.cs" />
     <Compile Include="Scattering\Field\Operation\IReflectOperation.cs" />
     <Compile Include="Scattering\Field\Operation\IExpansionOperation.cs" />
-    <Compile Include="Scattering\Field\Operation\IFieldOperation.cs" />
     <Compile Include="Geometry\EulerExtension.cs" />
     <Compile Include="Scattering\Fresnel.cs" />
     <Compile Include="Geometry\Region\Expression.cs" />

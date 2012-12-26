@@ -5,12 +5,15 @@ using TmatArt.Scattering.Field.Operation;
 
 namespace TmatArt.Scattering.Field.Impl
 {
-	public struct PlaneWaveImpl: IReflectOperation, IExpansionOperation, IFieldOperation<PlaneWave>
+	public struct PlaneWaveImpl: IReflectOperation, IExpansionOperation
 	{
-		PlaneWave field;
+		public readonly PlaneWave field;
 
-		/// <see cref="IFieldOperation.SetField"/> 
-		public void SetField(PlaneWave field)
+		/// <summary>
+		/// Initializes a new instance of the <see cref="TmatArt.Scattering.Field.Impl.PlaneWaveImpl"/> struct.
+		/// </summary>
+		/// <param name="field">Field.</param>
+		public PlaneWaveImpl(PlaneWave field)
 		{
 			this.field = field;
 		}
@@ -18,17 +21,17 @@ namespace TmatArt.Scattering.Field.Impl
 		/// <see cref="IReflectOperation.Reflect"/> 
 		public Field Reflect(Halfspace region, Medium.Isotrop mediumExt)
 		{
-			Fresnel.Coefficients coef = Fresnel.Compute(this.field.beta, this.field.medium.index, mediumExt.index);
 			// TODO theta_reflected = pi - theta seems be wrong for absorbing media
-			PlaneWave res = new PlaneWave(System.Math.PI - field.beta, this.field.phi);
+			Fresnel.Coefficients coef = Fresnel.Compute(this.field.beta, this.field.medium.index, mediumExt.index);
 			double wavenumber = 2 * System.Math.PI / field.wave.length;
-			Complex phase1 = Complex.AIM * Complex.Math.Cos(field.beta) * field.medium.index * region.z * wavenumber;
-			Complex phase2 = phase1;
-			res.ex     = Complex.Math.Exp(phase2) * coef.rp * Complex.Math.Exp(phase1) * this.field.ex;
-			res.ey     = Complex.Math.Exp(phase2) * coef.rs * Complex.Math.Exp(phase1) * this.field.ey;
-			res.norm   = 1;
-			res.wave   = this.field.wave;
-			res.medium = this.field.medium;
+			Complex phase = 2 * Complex.Math.Cos(field.beta) * field.medium.index;
+			phase = Complex.AIM * phase * region.z * wavenumber;
+
+			PlaneWave res = new PlaneWave(field);
+			res.beta   = System.Math.PI - field.beta;
+			res.ex     = coef.rp * Complex.Math.Exp(phase) * this.field.ex;
+			res.ey     = coef.rs * Complex.Math.Exp(phase) * this.field.ey;
+
 			return res;
 		}
 
@@ -36,15 +39,16 @@ namespace TmatArt.Scattering.Field.Impl
 		public Field Transmit(Halfspace region, Medium.Isotrop mediumExt)
 		{
 			Fresnel.Coefficients coef = Fresnel.Compute(this.field.beta, this.field.medium.index, mediumExt.index);
-			PlaneWave res = new PlaneWave(coef.thetaOut, this.field.phi, PlaneWave.Polarization.HORIZONTAL);
 			double wavenumber = 2 * System.Math.PI / field.wave.length;
-			Complex phase1 = Complex.AIM * Complex.Math.Cos(field.beta) * field.medium.index * region.z * wavenumber;
-			Complex phase2 = -Complex.AIM * Complex.Math.Cos(res.beta) * mediumExt.index * region.z * wavenumber;
-			res.ex     = Complex.Math.Exp(phase2) * coef.tp * Complex.Math.Exp(phase1) * this.field.ex;
-			res.ey     = Complex.Math.Exp(phase2) * coef.ts * Complex.Math.Exp(phase1) * this.field.ey;
-			res.norm   = 1;
-			res.wave   = this.field.wave;
+			Complex phase = Complex.Math.Cos(field.beta) * field.medium.index - Complex.Math.Cos(coef.thetaOut) * mediumExt.index;
+			phase = Complex.AIM * phase * region.z * wavenumber;
+
+			PlaneWave res = new PlaneWave(field);
+			res.beta   = coef.thetaOut;
+			res.ex     = coef.tp * Complex.Math.Exp(phase) * this.field.ex;
+			res.ey     = coef.ts * Complex.Math.Exp(phase) * this.field.ey;
 			res.medium = mediumExt;
+
 			return res;
 		}
 

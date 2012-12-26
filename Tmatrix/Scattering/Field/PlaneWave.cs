@@ -21,11 +21,24 @@ namespace TmatArt.Scattering.Field
 
 		public enum Polarization {VERTICAL, HORIZONTAL, CIRCULAR_R, CIRCULAR_L};
 
+		public PlaneWave(PlaneWave field)
+		{
+			this.beta = field.beta;
+			this.phi  = field.phi;
+			this.ex   = field.ex;
+			this.ey   = field.ey;
+			this.norm = field.norm;
+			this.wave = field.wave;
+			this.medium = field.medium;
+		}
+
 		public PlaneWave(Complex beta, double phi, Polarization polarization = Polarization.VERTICAL)
 		{
 			this.beta  = beta;
 			this.phi   = phi;
 			this.norm  = 1;
+			this.wave  = WaveLength.Default;
+			this.medium= Isotrop.Default;
 
 			switch (polarization) {
 			case Polarization.CIRCULAR_L: this.ex = new Complex(1); this.ey = new Complex(1) * Complex.Euler(1, -System.Math.PI / 2); break;
