@@ -17,6 +17,11 @@ namespace TmatArt.Scattering.Medium
 		{
 			this.index = Complex.Math.Sqrt(eps * mu);
 		}
+
+		/// <summary>
+		/// Default medium
+		/// </summary>
+		public static Isotrop Default = new Isotrop(1.0);
 	}
 }
 

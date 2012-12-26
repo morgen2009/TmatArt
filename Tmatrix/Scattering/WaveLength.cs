@@ -15,7 +15,7 @@ namespace TmatArt.Scattering
 		/// <summary>
 		/// Default unit
 		/// </summary>
-		public const Unit Default = Unit.NM;
+		public const Unit DefaultUnit = Unit.NM;
 
 		/// <summary>
 		/// Wavelength value
@@ -39,14 +39,14 @@ namespace TmatArt.Scattering
 		/// </summary>
 		/// <param name="length">WaveLength value.</param>
 		/// <param name="unit">Unit, in which the value is defined.</param>
-		public WaveLength(double length, Unit unit = WaveLength.Default)
+		public WaveLength(double length, Unit unit = WaveLength.DefaultUnit)
 		{
 			this.length = length;
 			this.unit   = unit;
 		}
 
 		/// <see cref="WaveLength" />
-		public static WaveLength Value(double length, Unit unit = WaveLength.Default)
+		public static WaveLength Value(double length, Unit unit = WaveLength.DefaultUnit)
 		{
 			return new WaveLength(length, unit);
 		}
@@ -86,6 +86,11 @@ namespace TmatArt.Scattering
 			this.unit = unit;
 			return this;
 		}
+
+		/// <summary>
+		/// Default wavelength
+		/// </summary>
+		public static WaveLength Default = new WaveLength(628.31, WaveLength.Unit.NM);
 	}
 }
 
