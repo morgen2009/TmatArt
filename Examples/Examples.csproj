@@ -43,12 +43,14 @@
     <Compile Include="Common\RunContext.cs" />
     <Compile Include="Common\Attribute\ExampleGroup.cs" />
     <Compile Include="Common\Attribute\IExample.cs" />
+    <Compile Include="Plot\GnuplotFieldSaver.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Common\" />
     <Folder Include="Common\Attribute\" />
     <Folder Include="Examples\" />
+    <Folder Include="Plot\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Tmatrix\Tmatrix.csproj">
