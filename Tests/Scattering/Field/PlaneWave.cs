@@ -105,15 +105,49 @@ namespace TmatArt.Scattering.Field
 			// assert
 			Vector3d point = new Vector3d(0, 0, z0);
 			Vector3c n = new Vector3c(0, 0, 1);
-
+			
 			Vector3c f1 = (field.NearE(point) ^ n);
 			Vector3c fr = (reflect.NearE(point) ^ n);
 			Vector3c ft = (transmit.NearE(point) ^ n);
-
+			
 			Console.WriteLine((f1+fr).info());
 			Console.WriteLine(ft.info());
 			Console.WriteLine(((f1.y.im+fr.y.im)/ft.y.im));
+			
+			Console.WriteLine(String.Format("{0} : {1} : {2}", f1.Length().re, fr.Length().re, ft.Length().re));
+			Assert.That(f1+fr, new Vector3cConstraint(ft, 1E-4));
+		}
 
+		[Test]public void TangentialComponentsEvanescent (
+			[Values(0, 1)] double mr_im,
+			[Values(0, 1000)] double z,
+			[Values(60)] double beta,
+			[Values(0,1,2,3)] PlaneWave.Polarization pol)
+		{
+			// TODO Further validations are needed (when angle is complex and evanescent wave and tow absorbing media)
+			// arrange
+			PlaneWave field = new PlaneWave(beta*deg, 0, pol);
+			field.wave   = new WaveLength(628.3);
+			field.medium = new Isotrop(1.5);
+			Isotrop medium2 = new Isotrop(new Complex(1.0, 0.01*mr_im));
+			double z0 = z;
+			
+			// act
+			PlaneWave reflect  = field.Resolve<IReflectOperation>().Reflect(new Halfspace(z0), medium2) as PlaneWave;
+			PlaneWave transmit = field.Resolve<IReflectOperation>().Transmit(new Halfspace(z0), medium2) as PlaneWave;
+			
+			// assert
+			Vector3d point = new Vector3d(0, 0, z0);
+			Vector3c n = new Vector3c(0, 0, 1);
+			
+			Vector3c f1 = (field.NearE(point) ^ n);
+			Vector3c fr = (reflect.NearE(point) ^ n);
+			Vector3c ft = (transmit.NearE(point) ^ n);
+			
+			Console.WriteLine((f1+fr).info());
+			Console.WriteLine(ft.info());
+			Console.WriteLine(((f1.y.im+fr.y.im)/ft.y.im));
+			
 			Console.WriteLine(String.Format("{0} : {1} : {2}", f1.Length().re, fr.Length().re, ft.Length().re));
 			Assert.That(f1+fr, new Vector3cConstraint(ft, 1E-4));
 		}

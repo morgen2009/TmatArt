@@ -25,12 +25,12 @@ namespace TmatArt.Scattering
 
 			// scattering angle for transmitted wave
 			res.thetaIn  = thetaIn;
-			res.thetaOut = Fresnel.ThetaOut(thetaIn, indexIn, indexOut);
+			res.thetaOut = Fresnel.ThetaOut(thetaIn, indexIn, indexOut).Conjugate();
 			Complex cosIn  = Complex.Math.Cos(res.thetaIn);
 			Complex cosOut = Complex.Math.Cos(res.thetaOut);
 
-			Console.WriteLine("{0}  :  {1}", res.thetaOut.re, res.thetaOut.im);
-			Console.WriteLine("{0}  :  {1}", cosOut.re, cosOut.im);
+			Console.WriteLine("thetaOut : {0}  :  {1}", res.thetaOut.re, res.thetaOut.im);
+			Console.WriteLine("cosOut   : {0}  :  {1}", cosOut.re, cosOut.im);
 
 			// coefficients for reflected wave
 			res.rp = (indexOut * cosIn - indexIn * cosOut) / (indexIn * cosOut + indexOut * cosIn);

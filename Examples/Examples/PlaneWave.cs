@@ -79,10 +79,10 @@ namespace TmatArt.Examples
 			// arrage field
 			Field field = this.field;
 			Isotrop mediumExt = new Isotrop(0.666);
-			Halfspace surface = new Halfspace(0);
+			Halfspace surface = new Halfspace(200);
 			Field reflect = field.Resolve<IReflectOperation>().Reflect(surface, mediumExt);
 			Field trans   = field.Resolve<IReflectOperation>().Transmit(surface, mediumExt);
-			(trans as PlaneWave).beta = (trans as PlaneWave).beta.Conjugate();
+			//(trans as PlaneWave).beta = (trans as PlaneWave).beta.Conjugate();
 
 			Field totalUppon = new RegionField( new Superposition(new Field[] { field, reflect }), surface);
 			Field totalBelow = new RegionField( trans, Expression.NOT(surface));
