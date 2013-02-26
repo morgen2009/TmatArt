@@ -106,6 +106,7 @@
     <Compile Include="Scattering\Field\Operation\Container.cs" />
     <Compile Include="Scattering\Field\Operation\NotFoundException.cs" />
     <Compile Include="Scattering\Field\Impl\PlaneWaveImpl.cs" />
+    <Compile Include="Scattering\Field\Waveguide.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

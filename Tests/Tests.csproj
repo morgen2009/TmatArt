@@ -51,6 +51,7 @@
     <Compile Include="Geometry\Vector3dHelper.cs" />
     <Compile Include="Numeric\Mathematics\MathC.cs" />
     <Compile Include="Scattering\Field\PlaneWave.cs" />
+    <Compile Include="Scattering\Field\Waveguide.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
