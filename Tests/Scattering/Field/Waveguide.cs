@@ -15,7 +15,7 @@ namespace TmatArt.Scattering.Field
 
 		private double getRoot(Func<double, double> func, double a, double b)
 		{
-			const double epsRoot = 1E-5;
+			const double epsRoot = 1E-10;
 			double x=0, x1, fx;
 			double fa = func(a), fb = func(b);
 			
@@ -69,7 +69,7 @@ namespace TmatArt.Scattering.Field
 			}, 81 * deg, 82 * deg);
 
 
-			Console.WriteLine("{0}", 90 - thetaIn / deg);
+			Console.WriteLine("{0}", thetaIn / deg);
 
 			Assert.Fail();
 		}
